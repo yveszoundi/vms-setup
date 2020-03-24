@@ -8,7 +8,7 @@ choco install -y nmap netcat curl
 
 echo " "
 echo "Installing security tools"
-choco install -y git veracrypt keypassx gpg4win
+choco install -y git veracrypt keypassxc gpg4win
 
 echo " "
 echo "Installing productivity tools"

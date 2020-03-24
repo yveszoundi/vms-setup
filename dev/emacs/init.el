@@ -1,12 +1,12 @@
 ;;; init.el --- Emacs init file current project  -*- lexical-binding: t; -*-
 (mapc 'require '(cl-lib subr-x))
 
-(setq *home-dir* (getenv "HOME"))
+(setq *git-dir* (expand-file-name "Tools/git" (getenv "HOME")))
 (setq warning-minimum-level :error
-      find-program          (expand-file-name "tools/git/usr/bin/find.exe" *home-dir*)
-      grep-program          (expand-file-name "tools/git/usr/bin/grep.exe" *home-dir*)
-      unix_utils_dir_1      (expand-file-name "tools/git/usr/local/wbin" *home-dir*)
-      unix_utils_dir_2      (expand-file-name "tools/git/bin" *home-dir*))
+      find-program          (expand-file-name "usr/bin/find.exe" *git-dir*)
+      grep-program          (expand-file-name "usr/bin/grep.exe" *git-dir*)
+      unix_utils_dir_1      (expand-file-name "usr/local/wbin" *git-dir*)
+      unix_utils_dir_2      (expand-file-name "bin" *git-dir*))
 
 (setenv "PATH" (concat (expand-file-name unix_utils_dir_1) path-separator (getenv "PATH")))
 (setenv "PATH" (concat (expand-file-name unix_utils_dir_2) path-separator (getenv "PATH")))
@@ -531,7 +531,8 @@ With negative N, comment out original line and use the absolute value."
   (define-key outline-minor-mode-map
     (concat outline-minor-mode-prefix "") 'outline-hide-body))
 
-(setq my-backup-dir (expand-file-name user-emacs-directory))
+(setq my-backup-dir (expand-file-name "backups" user-emacs-directory ))
+(me/mkdir-p my-backup-dir)
 (setq backup-directory-alist `(("." . ,my-backup-dir))
       delete-old-versions t
       kept-new-versions 12
@@ -733,7 +734,7 @@ With negative N, comment out original line and use the absolute value."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#474646" :foreground "#e0c1a4" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 135 :width normal :foundry "nil" :family "Consolas"))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 135 :width normal :foundry "nil" :family "Consolas"))))
  '(cursor ((t (:background "#d4ce7d" :foreground "magenta"))))
  '(dap-ui-pending-breakpoint-face ((t (:background "#magenta" :bold t :foreground "white"))))
  '(dap-ui-verified-breakpoint-face ((t (:background "#aa5aa1" :bold t :foreground "white"))))
