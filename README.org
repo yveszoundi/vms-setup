@@ -1,0 +1,42 @@
+#+TITLE: Windows machine config
+
+* About
+
+This is a set of basic configuration files and scripts towards a basic safe dev environment when I must use Windows. I'd still go through a similar process under Mac OS or Linux.
+
+I have tailored it to my basic needs, it doesn't necessarily reflect what I'm currently using.
+
+This repo is meant for the initial machine setup within a corporate environment:
+- Non-aggressive approaches (registry settings, deleting IE, etc.)
+- Most machines are setup to go through a proxy server, etc.
+- Machines might have keyloggers
+
+* General recommendations
+
+- Do setup [[https://www.veracrypt.fr/en/Home.html][Veracrypt]] containers for sensitive data
+- Do use a password manager such as [[https://keepassxc.org/][KeypassXC ]](store DBs inside veracrypt containers). I usually pick KeypassXC over [[https://bitwarden.com/][Bitwarden]] in a corporate setting unless hosted on-prem...
+- Split your browsers accordingly to your internet vs strictly corporate usage:
+  - Firefox for safe *general* internet browsing with couple of [[https://www.privacytools.io/browsers/#addons][known privacy addons]] (never save passwords among other basics): tutorials, stackoverflow, google searches if you must use Google, etc.
+  - IE & Chrome for general corporate websites and apps (ActiveX issues, some security plugins could break applications that you care about).
+- Use your [[https://en.wikipedia.org/wiki/Virtual_private_network][Corporate VPN]] at all time (whenever possible), especially when working from home
+- Corporate equipment isn't your personal property:
+  - What if my employer can obtain my personal passwords?
+  - What if my employer can continuously collect screenshots of my computer activity (personal direct messages, Facebook, Gmail/Hotmail emails, etc.)?
+  - What if all my internet traffic is continuously analyzed for security and other purposes?
+  - What if SSL traffic can be intercepted via some kind of corporate proxy first?
+- If for any reason you need to forward sensitive data over 'free' email services, encrypt the contents with a combination of tools (PGP, OpenSSL, etc.): send yourself invoice copies, timesheets or similar **non-corporate/client** data
+
+* Privacy issues
+
+- https://www.wired.com/story/windows-10-privacy-settings/
+- https://www.computerworld.com/article/3025709/how-to-protect-your-privacy-in-windows-10.html
+- https://pixelprivacy.com/resources/windows-privacy-settings/
+- https://gist.github.com/alirobe/7f3b34ad89a159e6daa1
+
+* Links
+
+- https://www.tenforums.com/tutorials/3234-environment-variables-windows-10-a.html
+- https://restoreprivacy.com/
+- https://www.privacytools.io/
+- https://simplednscrypt.org/
+- https://prism-break.org/en/categories/windows/
