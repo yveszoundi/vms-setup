@@ -4,7 +4,7 @@ choco install -y autohotkey procexp
 
 echo " "
 echo "Installing network tools"
-choco install -y nmap netcat
+choco install -y nmap netcat curl
 
 echo " "
 echo "Installing security tools"
