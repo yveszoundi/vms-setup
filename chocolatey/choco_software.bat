@@ -24,4 +24,5 @@ choco install -y thunderbird
 
 echo " "
 echo "Installing multimedia tools"
-choco install -y obs-studio
+choco install -y obs-studio graphviz imagemagick
+

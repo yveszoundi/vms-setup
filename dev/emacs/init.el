@@ -714,10 +714,10 @@ With negative N, comment out original line and use the absolute value."
  '(linum-format " %5i ")
  '(menu-bar-mode nil)
  '(package-check-signature nil)
- '(package-selected-packages (quote (yasnippet eglot yaml-mode typescript-mode)))
+ '(package-selected-packages (quote (yasnippet eglot yaml-mode typescript-mode markdown-mode plantuml-mode)))
  '(plantuml-java-args
    (quote
-    ("-Djava.awt.headless=true" "-jar" "--illegal-access=deny" "-DPLANTUML_LIMIT_SIZE=500")))
+    ("-Djava.awt.headless=true" "-jar" "--illegal-access=deny")))
  '(recentf-mode t)
  '(safe-local-variable-values
    (quote
