@@ -139,11 +139,11 @@
         become: yes
         ansible.builtin.shell:
           chdir: '/tmp/boomer-custom'
-          cmd: nimble build
+          cmd: nimble build -y
 
       - name: Copy custom binaries
         become: yes
-        copy: src={{ item.src }} dest={{ item.dest }}
+        copy: src={{ item.src }} dest={{ item.dest }} mode='700'
         with_items:
           - { src: '/tmp/dwm-custom/dwm', dest: '/usr/local/bin/dwm' }
           - { src: '/tmp/st-custom/st', dest: '/usr/local/bin/st' }
