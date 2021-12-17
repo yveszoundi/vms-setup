@@ -1,5 +1,6 @@
 ---
 create_user: 'vip'
+create_user_password: 'vip123'
 packages_base: ['oksh','lrzip','screen']
 packages_sec: ['VeraCrypt','encfs','keepassxc']
 packages_editor: ['emacs', 'mg']
@@ -12,3 +13,10 @@ packages_x11: ['xorg','wmname','xdm','elogind']
 packages_desktop: ['gvfs','pcmanfm','firefox']
 packages_fonts: ['cantarell-fonts','terminus-font','liberation-fonts-ttf','noto-fonts-ttf','dejavu-fonts-ttf']
 packages_backup: ['borgmatic','rsync','rclone']
+github_repo_url_dwm: 'https://github.com/yveszoundi/dwm-customization.git'
+github_repo_url_st: 'https://github.com/yveszoundi/st-customization.git'
+github_repo_url_boomer: 'https://github.com/yveszoundi/boomer.git'
+github_repo_folder_dwm: '/tmp/dwm-custom'
+github_repo_folder_st: '/tmp/st-custom'
+github_repo_folder_boomer: '/tmp/boomer-custom'
+custom_binaries_folder: '/usr/local/bin'

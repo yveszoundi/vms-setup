@@ -6,58 +6,59 @@
       - vars/default.yml
 
     tasks:
-      - name: Install base system tools
+      - name: Installing base system tools
         become: yes
         xbps: name={{ packages_base }} state=present
 
-      - name: Install editors
+      - name: Installing editors
         become: yes
         xbps: name={{ packages_editor }} state=present
 
-      - name: Install devel tools
+        - name: Installing devel tools
         become: yes
         xbps: name={{ packages_devel }} state=present
 
-      - name: Install utilities
+      - name: Installing utilities
         become: yes
         xbps: name={{ packages_utilities }} state=present
 
-      - name: Install productivity packages
+      - name: Installing productivity packages
         become: yes
         xbps: name={{ packages_productivity }} state=present
 
-      - name: Install sound packages
+      - name: Installing sound packages
         become: yes
         xbps: name={{ packages_sound }} state=present
 
-      - name: Install additional programming tools
+      - name: Installing additional programming tools
         become: yes
         xbps: name={{ packages_programming }}  state=present
 
-      - name: Install x11 tools
+      - name: Installing x11 tools
         become: yes
         xbps: name={{ packages_x11 }}  state=present
 
-      - name: Install desktop tools
+      - name: Installing desktop tools
         become: yes
         xbps: name={{ packages_desktop }} state=present
 
-      - name: Install fonts
+      - name: Installing fonts
         become: yes
         xbps: name={{ packages_fonts}} state=present
 
-      - name: Install backup tools
+      - name: Installing backup tools
         become: yes
         xbps: name={{ packages_backup }} state=present
 
-      - name: Install security tools
+      - name: Installing security tools
         become: yes
         xbps: name={{ packages_sec }} state=present
 
-      - name: Create user
+      - name: Creating user "{{ create_user }}"
         become: yes
         ansible.builtin.user:
           name: '{{ create_user }}'
+          password: '{{ create_user_password }}'
           state: present
           groups: wheel,audio,cdrom,floppy,input,lp,scanner,video
           append: true
@@ -65,7 +66,9 @@
           skeleton: ./skel.d
           shell: /bin/oksh
 
-      - name: kshrc link
+      - name: Expiring password for user "{{ create_user }}"
+
+      - name: Creating kshrc symlink
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
@@ -74,7 +77,7 @@
           owner: '{{ create_user }}'
           state: link
 
-      - name: inputrc link
+      - name: Creating inputrc symlink
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
@@ -83,7 +86,7 @@
           owner: '{{ create_user }}'
           state: link
 
-      - name: xsession link
+      - name: Creating xsession symlink
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
@@ -92,7 +95,7 @@
           owner: '{{ create_user }}'
           state: link
 
-      - name: xsession link
+      - name: Creating xsession symlink
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
@@ -102,53 +105,50 @@
           mode: '700'
           state: link
 
-      - name: Checkout dwm
+      - name: Cloning dwm customization from Github
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.git:
-          repo: https://github.com/yveszoundi/dwm-customization.git
-          dest: '/tmp/dwm-custom'
+          repo: '{{ github_repo_url_dwm }}'
+          dest: '{{ github_repo_folder_dwm }}'
 
-      - name: Checkout st
+      - name: Cloning st terminal customization from Github
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.git:
-          repo: https://github.com/yveszoundi/st-customization.git
-          dest: '/tmp/st-custom'
+          repo: '{{ github_repo_url_st }}'
+          dest: '{{ github_repo_folder_st }}'
 
-      - name: Checkout boomer
+      - name: Cloning boomer customization from Github
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.git:
-          repo: https://github.com/yveszoundi/boomer.git
-          dest: '/tmp/boomer-custom'        
-
-      - name: Compile dwm
+          repo: '{{ github_repo_url_boomer }}'
+          dest: '{{ github_repo_folder_boomer }}'
+˜
+      - name: Compiling dwm
         become: yes
         become_user: '{{ create_user }}'
         make:
-          chdir: '/tmp/dwm-custom'
+          chdir: '{{ github_repo_folder_dwm }}'
 
-      - name: Compile st
+      - name: Compiling st
         become: yes
         become_user: '{{ create_user }}'
         make:
-          chdir: '/tmp/st-custom'
+          chdir: '{{ github_repo_folder_st }}'
 
-      - name: Compile boomer
+      - name: Compiling boomer
         become: yes
         ansible.builtin.shell:
-          chdir: '/tmp/boomer-custom'
+          chdir: '{{ github_repo_folder_boomer }}'
           cmd: nimble build -y
 
-      - name: Copy custom binaries
+      - name: Copying custom binaries to "{{ custom_binaries_folder }}"
         become: yes
         copy: src={{ item.src }} dest={{ item.dest }} mode='700'
         with_items:
-          - { src: '/tmp/dwm-custom/dwm', dest: '/usr/local/bin/dwm' }
-          - { src: '/tmp/st-custom/st', dest: '/usr/local/bin/st' }
-          - { src: '/tmp/boomer-custom/boomer', dest: '/usr/local/bin/boomer' }
+          - { src: '{{ github_repo_folder_dwm }}', dest: '{{ custom_binaries_folder }}/dwm' }
+          - { src: '{{ github_repo_folder_st }}', dest: '{{ custom_binaries_folder }}/st' }
+          - { src: '{{ github_repo_folder_boomer }}', dest: '{{ custom_binaries_folder }}/boomer' }
 
-
-        
-          

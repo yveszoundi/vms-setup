@@ -533,6 +533,12 @@ With negative N, comment out original line and use the absolute value."
 (with-eval-after-load 'xref
   (global-set-key (kbd "M-\"") 'xref-find-apropos))
 
+;;;; terminal-mouse-scroll
+(unless (display-graphic-p)
+  (xterm-mouse-mode 1)
+  (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+  (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
+
 (load-theme 'base16-onedark t)
 
 ;;; Local Variables:
