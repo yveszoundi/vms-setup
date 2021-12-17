@@ -1,7 +1,7 @@
 ---
 create_user: 'vip'
 packages_base: ['oksh','lrzip','screen']
-packages_sec: ['veracrypt', 'keepassxc' , 'encfs']
+packages_sec: ['veracrypt','keepassxc','encfs']
 packages_editor: ['emacs', 'mg']
 packages_devel: ['base-devel','libXft-devel','libXinerama-devel']
 packages_utilities: ['ripgrep','git','gnupg']
