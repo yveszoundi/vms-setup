@@ -1,0 +1,48 @@
+TERM=xterm-256color
+RSYNC_RSH=ssh
+EDITOR=mg
+PAGER=less
+CLICOLOR=1
+HISTSIZE=4096
+HISTFILE=$HOME/.history
+XDG_CONFIG_HOME=$HOME/.config
+XDG_DATA_HOME=$HOME/.local/share
+SCREENRC=$XDG_CONFIG_HOME/screen/screenrc
+XRESOURCES=$XDG_CONFIG_HOME/x11/Xresources
+
+export PAGER TERM RSYNC_RSH CLICOLOR SCREENRC XRESOURCES EDITOR
+export HISTFILE HISTSIZE
+export XDG_CONFIG_HOME XDG_DATA_HOME
+
+set -o emacs
+
+alias ls='ls --color=auto'
+alias la='ls -al'
+alias df='df -h'
+alias ll='ls -l'
+alias mkdir='mkdir -p'
+alias em='emacs -nw'
+export ls la em df ll mkdir
+
+backup() {
+    if [[ -d $1 ]]; then
+        input_dir="$1"
+        parent_dir="$(dirname "$input_dir")"
+        base_dir=$(basename "$1")
+        archive_name=${2:-"$input_dir"}
+        archive_name=$(basename $archive_name)
+
+        if [[ "$archive_name" == .* ]]; then
+            archive_name=$(echo $archive_name|cut -c2-)
+        fi
+
+        archive_location=$HOME/Backups/${archive_name}-$(date +%Y%m%d.%H%m%s).lrz
+        echo "Archiving ${input_dir} to ${archive_location}"
+        old_dir=$PWD
+        cd $parent_dir
+        lrztar -o ${archive_location} $base_dir
+        cd $old_dir
+    else
+        echo "$1 is not a valid directory!"
+    fi
+}

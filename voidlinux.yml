@@ -1,0 +1,93 @@
+---
+  - name: Void Linux Setup
+    hosts: localhost
+    connection: local
+    vars_files:
+      - vars/default.yml
+
+    tasks:
+      - name: Install base system tools
+        become: yes
+        xbps: name={{ packages_base }} state=present
+
+      - name: Install editors
+        become: yes
+        xbps: name={{ packages_editor }} state=present
+
+      - name: Install devel tools
+        become: yes
+        xbps: name={{ packages_devel }} state=present
+
+      - name: Install utilities
+        become: yes
+        xbps: name={{ packages_utilities }} state=present
+
+      - name: Install productity packages
+        become: yes
+        xbps: name={{ packages_productivity }} state=present
+
+      - name: Install sound packages
+        become: yes
+        xbps: name={{ packages_sound }} state=present
+
+      - name: Install java packages
+        become: yes
+        xbps: name={{ packages_java }}  state=present
+
+      - name: Install x11 tools
+        become: yes
+        xbps: name={{ packages_x11 }}  state=present
+
+      - name: Install desktop tools
+        become: yes
+        xbps: name={{ packages_desktop }} state=present
+
+      - name: Install fonts
+        become: yes
+        xbps: name={{ packages_fonts}} state=present
+
+      - name: Install security tools
+        become: yes
+        xbps: name={{ packages_sec }} state=present
+
+      - name: Install backup tools
+        become: yes
+        xbps: name={{ packages_backup }} state=present
+
+      - name: Create user
+        name: {{ create_user }}
+        state: present
+        groups: wheel,audio,cdrom,floppy,input,lp,scanner,video
+        append: true
+        create_home: true
+        skelton: ./skel.d
+        shell: /bin/oksh
+
+      - name: kshrc link
+        ansible.builtin.file:
+          path: '/home/{{ create_user }}/.config/shell/okshrc'
+          dest: '/home/{{ create_user }}/.kshrc'
+          owner: '{{ create_user }}'
+          state: link
+
+      - name: inputrc link
+        ansible.builtin.file:
+          path: '/home/{{ create_user }}/.config/readline/inputrc'
+          dest: '/home/{{ create_user }}/.inputrc'
+          owner: '{{ create_user }}'
+          state: link
+
+      - name: xsession link
+        ansible.builtin.file:
+          path: '/home/{{ create_user }}/.config/x11/xsessionrc'
+          dest: '/home/{{ create_user }}/.xsessionrc'
+          owner: '{{ create_user }}'
+          state: link
+
+      - name: xsession link
+        ansible.builtin.file:
+          path: '/home/{{ create_user }}/.config/x11/xsession'
+          dest: '/home/{{ create_user }}/.xsession'
+          owner: '{{ create_user }}'
+          mode: '700'
+          state: link

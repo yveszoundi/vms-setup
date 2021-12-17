@@ -1,0 +1,29 @@
+*.font: Liberation mono-11
+*.foreground:   #abb2bf
+*.background:   #ff0000
+*.cursorColor:  #abb2bf
+*.opacity:      0.87 
+*.borderpx:     1
+*.color0:       #282c34
+*.color8:       #545862
+*.color1:       #e06c75
+*.color9:       #d19a66
+*.color2:       #98c379
+*.color10:      #98c379
+*.color3:       #e5c07b
+*.color11:      #d19a66
+*.color4:       #61afef
+*.color12:      #56b6c2
+*.color5:       #c678dd
+*.color13:      #c678dd
+*.color6:       #56b6c2
+*.color14:      #61afef
+*.color7:       #abb2bf
+*.color15:      #c8ccd4
+
+*.normbordercolor: #282c34
+*.normbgcolor: #282c34
+*.normfgcolor: #c8ccd4
+*.selbordercolor: #be5046
+*.selbgcolor : #3e4451
+*.selfgcolor: #c8ccd4
