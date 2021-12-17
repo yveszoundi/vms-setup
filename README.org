@@ -12,3 +12,22 @@ A set of scripts and files for Linux environment configuration, /primarly/ withi
 - Package dependencies (the name might vary accordingly to the distribution):
   - [[https://en.wikipedia.org/wiki/Ansible_(software)][ansible]]: In order to run the provided ansible playbooks.
   - [[https://en.wikipedia.org/wiki/Git][git]]: Unless you intend to manually download a zip archive of this repository.
+
+* How do I use this?
+
+Please run the following commands in a terminal.
+
+#+begin_src sh
+  git clone https://github.com/yveszoundi/vms-setup.git && cd vms-setup
+  ansible-playbook -v void_linux_playbook.yml -K
+#+end_src
+
+ Once you're done with the above, finish the configuration:
+ - Open a terminal from the console (i.e. =ctrl-alt-f2=).
+ - Login with the username =vip= and the password =vip123=
+ - Please update your password when prompted
+ - Logout using the =exit= command
+ - Go to the XDM display manager window (i.e. =ctrl-alt-f1=)
+ - Authenticate and you'll notice that you're inside the dwm window manager
+ - Type =ctrl-t-k= to close =xconsole=
+ - You can read more about the relevant [[https://github.com/yveszoundi/dwm-customization][dwm customizations on Github]]
