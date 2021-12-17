@@ -50,9 +50,9 @@
         become: yes
         xbps: name={{ packages_backup }} state=present
 
-      - name: Install security tools
-        become: yes
-        xbps: name={{ packages_sec }} state=present
+      # - name: Install security tools
+      #   become: yes
+      #   xbps: name={{ packages_sec }} state=present
 
       - name: Create user
         become: yes
@@ -66,6 +66,8 @@
           shell: /bin/oksh
 
       - name: kshrc link
+        become: yes
+        become_user: '{{ create_user }}'
         ansible.builtin.file:
           src: '/home/{{ create_user }}/.config/shell/okshrc'
           dest: '/home/{{ create_user }}/.kshrc'
@@ -73,6 +75,8 @@
           state: link
 
       - name: inputrc link
+        become: yes
+        become_user: '{{ create_user }}'
         ansible.builtin.file:
           src: '/home/{{ create_user }}/.config/readline/inputrc'
           dest: '/home/{{ create_user }}/.inputrc'
@@ -80,6 +84,8 @@
           state: link
 
       - name: xsession link
+        become: yes
+        become_user: '{{ create_user }}'
         ansible.builtin.file:
           src: '/home/{{ create_user }}/.config/x11/xsessionrc'
           dest: '/home/{{ create_user }}/.xsessionrc'
@@ -87,6 +93,8 @@
           state: link
 
       - name: xsession link
+        become: yes
+        become_user: '{{ create_user }}'
         ansible.builtin.file:
           src: '/home/{{ create_user }}/.config/x11/xsession'
           dest: '/home/{{ create_user }}/.xsession'
