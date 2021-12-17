@@ -66,8 +66,6 @@
           skeleton: ./skel.d
           shell: /bin/oksh
 
-      - name: Expiring password for user "{{ create_user }}"
-
       - name: Creating kshrc symlink
         become: yes
         become_user: '{{ create_user }}'
@@ -152,3 +150,5 @@
           - { src: '{{ github_repo_folder_st }}', dest: '{{ custom_binaries_folder }}/st' }
           - { src: '{{ github_repo_folder_boomer }}', dest: '{{ custom_binaries_folder }}/boomer' }
 
+      - name: Expiring password for user "{{ create_user }}"
+        command: "chage -d 0 {{ create_user }}"
