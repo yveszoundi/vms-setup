@@ -58,7 +58,7 @@
         become: yes
         ansible.builtin.user:
           name: '{{ create_user }}'
-          password: '{{ create_user_password }}'
+          password: "{{ create_user_password | password_hash('sha512') }}"
           state: present
           groups: wheel,audio,cdrom,floppy,input,lp,scanner,video
           append: true
@@ -74,6 +74,15 @@
           dest: '/home/{{ create_user }}/.kshrc'
           owner: '{{ create_user }}'
           state: link
+
+      - name: Creating dot profile symlink
+        become: yes
+        become_user: '{{ create_user }}'
+        ansible.builtin.file:
+          src: '/home/{{ create_user }}/.config/shell/profile'
+          dest: '/home/{{ create_user }}/.profile'
+          owner: '{{ create_user }}'
+          state: link        
 
       - name: Creating inputrc symlink
         become: yes
@@ -151,4 +160,4 @@
           - { src: '{{ github_repo_folder_boomer }}/boomer', dest: '{{ custom_binaries_folder }}/boomer' }
 
       - name: Expiring password for user "{{ create_user }}"
-        command: "passwd --expire {{ create_user }}"
+        command: "chage -d 0 {{ create_user }}"
