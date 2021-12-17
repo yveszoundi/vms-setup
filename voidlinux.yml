@@ -55,6 +55,7 @@
         xbps: name={{ packages_sec }} state=present
 
       - name: Create user
+        become: yes
         ansible.builtin.user:
           name: '{{ create_user }}'
           state: present
@@ -66,28 +67,28 @@
 
       - name: kshrc link
         ansible.builtin.file:
-          path: '/home/{{ create_user }}/.config/shell/okshrc'
+          src: '/home/{{ create_user }}/.config/shell/okshrc'
           dest: '/home/{{ create_user }}/.kshrc'
           owner: '{{ create_user }}'
           state: link
 
       - name: inputrc link
         ansible.builtin.file:
-          path: '/home/{{ create_user }}/.config/readline/inputrc'
+          src: '/home/{{ create_user }}/.config/readline/inputrc'
           dest: '/home/{{ create_user }}/.inputrc'
           owner: '{{ create_user }}'
           state: link
 
       - name: xsession link
         ansible.builtin.file:
-          path: '/home/{{ create_user }}/.config/x11/xsessionrc'
+          src: '/home/{{ create_user }}/.config/x11/xsessionrc'
           dest: '/home/{{ create_user }}/.xsessionrc'
           owner: '{{ create_user }}'
           state: link
 
       - name: xsession link
         ansible.builtin.file:
-          path: '/home/{{ create_user }}/.config/x11/xsession'
+          src: '/home/{{ create_user }}/.config/x11/xsession'
           dest: '/home/{{ create_user }}/.xsession'
           owner: '{{ create_user }}'
           mode: '700'
