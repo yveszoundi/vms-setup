@@ -22,7 +22,7 @@
         become: yes
         xbps: name={{ packages_utilities }} state=present
 
-      - name: Install productity packages
+      - name: Install productivity packages
         become: yes
         xbps: name={{ packages_productivity }} state=present
 
