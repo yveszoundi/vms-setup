@@ -5,6 +5,7 @@ xrandr --auto --output Virtual-1  --mode 1440x900
 
 # read variables
 export ENV="$HOME/.kshrc"
+[[ -f $HOME/.profile ]] && . $HOME/.profile
 [[ -f $HOME/.kshrc ]] && . $HOME/.kshrc
 
 #setxkbmap -option ctrl:swapcaps
