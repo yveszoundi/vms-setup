@@ -30,9 +30,9 @@
         become: yes
         xbps: name={{ packages_sound }} state=present
 
-      - name: Install java packages
+      - name: Install additional programming tools
         become: yes
-        xbps: name={{ packages_java }}  state=present
+        xbps: name={{ packages_programming }}  state=present
 
       - name: Install x11 tools
         become: yes
@@ -50,9 +50,9 @@
         become: yes
         xbps: name={{ packages_backup }} state=present
 
-      # - name: Install security tools
-      #   become: yes
-      #   xbps: name={{ packages_sec }} state=present
+      - name: Install security tools
+        become: yes
+        xbps: name={{ packages_sec }} state=present
 
       - name: Create user
         become: yes
@@ -101,3 +101,54 @@
           owner: '{{ create_user }}'
           mode: '700'
           state: link
+
+      - name: Checkout dwm
+        become: yes
+        become_user: '{{ create_user }}'
+        ansible.builtin.git:
+          repo: https://github.com/yveszoundi/dwm-customization.git
+          dest: '/tmp/dwm-custom'
+
+      - name: Checkout st
+        become: yes
+        become_user: '{{ create_user }}'
+        ansible.builtin.git:
+          repo: https://github.com/yveszoundi/st-customization.git
+          dest: '/tmp/st-custom'
+
+      - name: Checkout boomer
+        become: yes
+        become_user: '{{ create_user }}'
+        ansible.builtin.git:
+          repo: https://github.com/yveszoundi/boomer.git
+          dest: '/tmp/boomer-custom'        
+
+      - name: Compile dwm
+        become: yes
+        become_user: '{{ create_user }}'
+        make:
+          chdir: '/tmp/dwm-custom'
+
+      - name: Compile st
+        become: yes
+        become_user: '{{ create_user }}'
+        make:
+          chdir: '/tmp/st-custom'
+
+      - name: Compile boomer
+        become: yes
+        ansible.builtin.shell:
+          chdir: '/tmp/boomer-custom'
+          cmd: nimble build
+
+      - name: Copy custom binaries
+        become: yes
+        copy: src={{ item.src }} dest={{ item.dest }}
+        with_items:
+          - { src: '/tmp/dwm-custom/dwm', dest: '/usr/local/bin/dwm' }
+          - { src: '/tmp/st-custom/st', dest: '/usr/local/bin/st' }
+          - { src: '/tmp/boomer-custom/boomer', dest: '/usr/local/bin/boomer' }
+
+
+        
+          
