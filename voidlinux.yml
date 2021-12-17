@@ -55,13 +55,14 @@
         xbps: name={{ packages_backup }} state=present
 
       - name: Create user
-        name: {{ create_user }}
-        state: present
-        groups: wheel,audio,cdrom,floppy,input,lp,scanner,video
-        append: true
-        create_home: true
-        skelton: ./skel.d
-        shell: /bin/oksh
+        ansible.builtin.user:
+          name: {{ create_user }}
+          state: present
+          groups: wheel,audio,cdrom,floppy,input,lp,scanner,video
+          append: true
+          create_home: true
+          skeleton: ./skel.d
+          shell: /bin/oksh
 
       - name: kshrc link
         ansible.builtin.file:
