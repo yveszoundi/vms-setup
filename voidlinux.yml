@@ -56,7 +56,7 @@
 
       - name: Create user
         ansible.builtin.user:
-          name: {{ create_user }}
+          name: '{{ create_user }}'
           state: present
           groups: wheel,audio,cdrom,floppy,input,lp,scanner,video
           append: true
