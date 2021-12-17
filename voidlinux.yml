@@ -100,6 +100,7 @@
           src: '/home/{{ create_user }}/.config/x11/xsessionrc'
           dest: '/home/{{ create_user }}/.xsessionrc'
           owner: '{{ create_user }}'
+          mode: '700'
           state: link
 
       - name: Creating xsession symlink
@@ -111,6 +112,16 @@
           owner: '{{ create_user }}'
           mode: '700'
           state: link
+
+      - name: Creating xinitrc symlink
+        become: yes
+        become_user: '{{ create_user }}'
+        ansible.builtin.file:
+          src: '/home/{{ create_user }}/.config/x11/xsession'
+          dest: '/home/{{ create_user }}/.xinitrc'
+          owner: '{{ create_user }}'
+          mode: '700'
+          state: link        
 
       - name: Cloning dwm customization from Github
         become: yes
@@ -161,3 +172,12 @@
 
       - name: Expiring password for user "{{ create_user }}"
         command: "chage -d 0 {{ create_user }}"
+
+      - name: Add services to startup
+        ansible.builtin.shell: |
+          ln -s /etc/sv/dbus /var/service/dbus
+          ln -s /etc/sv/polkitd /var/service/polkitd
+          ln -s /etc/sv/elogind /var/service/elogind
+          ln -s /etc/sv/xdm /var/service/xdm
+          
+        
