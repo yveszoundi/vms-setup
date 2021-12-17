@@ -3,7 +3,7 @@
     hosts: localhost
     connection: local
     vars_files:
-      - vars/default.yml
+      - vars/void_linux_vars.yml
 
     tasks:
       - name: Installing base system tools
@@ -131,7 +131,15 @@
           dest: '/home/{{ create_user }}/.xinitrc'
           owner: '{{ create_user }}'
           mode: '700'
-          state: link        
+          state: link
+
+      - name: Making dwm autostart file executable
+        become: yes
+        become_user: '{{ create_user }}'
+        ansible.builtin.file:
+          dest: '/home/{{ create_user }}/.config/dwm/autostart'
+          mode: 'a+x'
+          
 
       - name: Cloning dwm customization from Github
         become: yes
