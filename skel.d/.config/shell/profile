@@ -21,4 +21,8 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+if [ -f /etc/profile ]; then
+. /etc/profile
+fi
+
 export ENV="${HOME}/.kshrc"

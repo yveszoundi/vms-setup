@@ -1,5 +1,7 @@
 #!/usr/bin/env ksh
 
+. $HOME/.profile
+
 export ENV="$HOME/.kshrc"
 . $ENV
 
