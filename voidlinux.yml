@@ -113,6 +113,16 @@
           mode: '700'
           state: link
 
+      - name: Creating xsessions symlink
+        become: yes
+        become_user: '{{ create_user }}'
+        ansible.builtin.file:
+          src: '/home/{{ create_user }}/.config/x11/xsession'
+          dest: '/home/{{ create_user }}/.xsessions'
+          owner: '{{ create_user }}'
+          mode: '700'
+          state: link
+
       - name: Creating xinitrc symlink
         become: yes
         become_user: '{{ create_user }}'
@@ -164,7 +174,7 @@
 
       - name: Copying custom binaries to "{{ custom_binaries_folder }}"
         become: yes
-        copy: src={{ item.src }} dest={{ item.dest }} mode='700'
+        copy: src={{ item.src }} dest={{ item.dest }} mode='a+x'
         with_items:
           - { src: '{{ github_repo_folder_dwm }}/dwm', dest: '{{ custom_binaries_folder }}/dwm' }
           - { src: '{{ github_repo_folder_st }}/st', dest: '{{ custom_binaries_folder }}/st' }

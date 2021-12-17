@@ -1,4 +1,6 @@
 #!/usr/bin/env ksh
 
 export ENV="$HOME/.kshrc"
-dbus-launch dwm
+. $ENV
+
+exec /usr/local/bin/dwm

@@ -1,2 +1,3 @@
 #!/usr/bin/env ksh
-. $HOME/xsessionrc
+
+. $HOME/.xsessionrc
