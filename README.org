@@ -3,10 +3,8 @@
 * What is this?
 
 This is a set of [[https://docs.ansible.com/ansible/latest/index.html][ansible playbooks]] for Linux post-installation configuration, /primarly/ for use within virtual machines ([[https://www.qemu.org/][QEMU]], [[https://www.vmware.com/products/workstation-player.html][VMWare]], [[https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/][Hyper-V]], [[https://www.virtualbox.org/][VirtualBox]], etc.).
-- The goal *is not* to create a very /user-friendly/ environment, but instead to have a usable system that doesn't demand much resources (CPU, RAM, etc.).
-- Not every virtual machine *requires* a graphical environment (backup server, penetration testing, media server, etc.).
-  - Even for general purposes, the UI doesn't always matter as long as you're comfortable with the command line.
-  - If you use *several* dedicated virtual machines (i.e. "a la" [[https://www.qubes-os.org/intro/][Qubes OS]]), not installing a UI saves disk spaces and memory usage too.
+- The goal *IS NOT¨* to create a very /user-friendly/ environment, but instead to have a usable system that doesn't demand much resources (CPU, RAM, etc.).
+- Not every virtual machine *requires* a graphical environment (backup server, penetration testing, media server, etc.). Even for general purposes, the UI doesn't always matter as long as you're comfortable with the command line. If you use *several* dedicated virtual machines (i.e. "a la" [[https://www.qubes-os.org/intro/][Qubes OS]]), not installing a UI saves disk space and memory usage too.
 
 * What is required?
 
