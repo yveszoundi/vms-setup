@@ -46,13 +46,13 @@
         become: yes
         xbps: name={{ packages_fonts}} state=present
 
-      - name: Install security tools
-        become: yes
-        xbps: name={{ packages_sec }} state=present
-
       - name: Install backup tools
         become: yes
         xbps: name={{ packages_backup }} state=present
+
+      - name: Install security tools
+        become: yes
+        xbps: name={{ packages_sec }} state=present
 
       - name: Create user
         ansible.builtin.user:
