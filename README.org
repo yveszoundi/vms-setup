@@ -1,31 +1,5 @@
-#+TITLE: Windows machine config
+#+TITLE: Virtual Machines Configuration
 
-* About
+* What is this?
 
-This is a set of basic configuration files and scripts towards a basic safe dev environment when I must use Windows:
-- I'd still go through a similar process under Mac OS or Linux.
-- I have tailored it to my basic needs, it doesn't necessarily reflect what I'm currently using.
-
-* General recommendations
-
-- Do setup [[https://www.veracrypt.fr/en/Home.html][Veracrypt]] containers or similar for storing sensitive data
-- Do use a password manager such as [[https://keepassxc.org/][KeypassXC ]](store DBs inside veracrypt containers). I usually pick KeypassXC over [[https://bitwarden.com/][Bitwarden]] in a corporate setting unless hosted on-prem...
-- Split your browsers accordingly to your internet vs strictly corporate usage (Firefox with [[https://www.privacytools.io/browsers/#addons][known privacy addons]] vs IE/Chrome for Intranet or *Trusted websites*)
-- Use your [[https://en.wikipedia.org/wiki/Virtual_private_network][Corporate VPN]] at all time (whenever possible), especially when working from home
-- Restrict as much as possible corporate equipment to corporate activities (i.e not for Facebook, Twitter, Linkedin, etc.)
-- Encrypt data that you *absolutely* need to send to yourself via a combination of tools (PGP, OpenSSL, etc.), emails may not be a good option
-
-* Privacy issues
-
-- https://www.wired.com/story/windows-10-privacy-settings/
-- https://www.computerworld.com/article/3025709/how-to-protect-your-privacy-in-windows-10.html
-- https://pixelprivacy.com/resources/windows-privacy-settings/
-- https://gist.github.com/alirobe/7f3b34ad89a159e6daa1
-
-* Links
-
-- https://www.tenforums.com/tutorials/3234-environment-variables-windows-10-a.html
-- https://restoreprivacy.com/
-- https://www.privacytools.io/
-- https://simplednscrypt.org/
-- https://prism-break.org/en/categories/windows/
+A set of scripts and files for automation within virtual machines (VMWare, VirtualBox, Hyper-V, QEMU, etc.).

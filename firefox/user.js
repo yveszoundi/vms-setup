@@ -341,6 +341,7 @@ user_pref("_user.js.parrot", "0500 syntax error: the parrot's cashed in 'is chip
  * Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
  * [1] https://wiki.mozilla.org/Firefox/Shield
  * [2] https://github.com/mozilla/normandy ***/
+user_pref("app.normandy.user_id", "anonymous");
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
 /* 0505: disable System Add-on updates ***/
@@ -1188,7 +1189,7 @@ user_pref("network.IDN_show_punycode", true);
  * CONS: You may prefer a different pdf reader for security reasons
  * CAVEAT: JS can still force a pdf to open in-browser by bundling its own code (rare)
  * [SETTING] General>Applications>Portable Document Format (PDF) ***/
-user_pref("pdfjs.disabled", false); // [DEFAULT: false]
+
 /* 2621: disable links launching Windows Store on Windows 8/8.1/10 [WINDOWS]
  * [1] https://www.ghacks.net/2016/03/25/block-firefox-chrome-windows-store/ ***/
 user_pref("network.protocol-handler.external.ms-windows-store", false);
@@ -1723,3 +1724,25 @@ user_pref("webgl.disable-extensions", true);
 
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("_user.js.parrot", "SUCCESS: No no he's not dead, he's, he's restin'!");
+
+user_pref("media.autoplay.allow-extension-background-pages", false);
+user_pref("media.autoplay.allow-muted", false);
+user_pref("media.autoplay.block-event.enabled", true);
+user_pref("media.autoplay.blocking_policy", 2);
+user_pref("media.autoplay.default", 5);
+user_pref("media.autoplay.enabled", false);
+user_pref("media.autoplay.enabled.user-gestures-needed", false);
+
+
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+
+user_pref("network.trr.blocklist_cleanup_done", true);
+user_pref("network.trr.resolvers", "[{ \"name\" : \"SecureDNS\", \"url\": \"https://ads-doh.securedns.eu/dns-query\" }, { \"name\": \"dnswarden\", \"url\": \"https://doh.dnswarden.com/uncensored\" }]");
+user_pref("network.trr.uri", "https://ads-doh.securedns.eu/dns-query");
+
+
+user_pref("pdfjs.disabled", true);
+user_pref("pdfjs.enabledCache.state", false);
+user_pref("pdfjs.migrationVersion", 2);
+user_pref("pdfjs.previousHandler.alwaysAskBeforeHandling", true);
+user_pref("pdfjs.previousHandler.preferredAction", 4);
