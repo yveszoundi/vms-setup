@@ -2,4 +2,13 @@
 
 * What is this?
 
-A set of scripts and files for automation within virtual machines (VMWare, VirtualBox, Hyper-V, QEMU, etc.).
+A set of scripts and files for Linux environment configuration, /primarly/ within virtual machines ([[https://www.qemu.org/][QEMU]], [[https://www.vmware.com/products/workstation-player.html][VMWare]], [[https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/][Hyper-V]], [[https://www.virtualbox.org/][VirtualBox]], etc.).
+
+* What is required?
+
+- Supported Linux distros: Only [[https://voidlinux.org/][Void Linux]] is supported at this time now.
+  - Q: Why /Void Linux/ first?
+  - A: Because it's a distro that I never had time to try
+- Package dependencies (the name might vary accordingly to the distribution):
+  - [[https://en.wikipedia.org/wiki/Ansible_(software)][ansible]]: In order to run the provided ansible playbooks.
+  - [[https://en.wikipedia.org/wiki/Git][git]]: Unless you intend to manually download a zip archive of this repository.
