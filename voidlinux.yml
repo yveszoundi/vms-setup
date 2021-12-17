@@ -14,7 +14,7 @@
         become: yes
         xbps: name={{ packages_editor }} state=present
 
-        - name: Installing devel tools
+      - name: Installing devel tools
         become: yes
         xbps: name={{ packages_devel }} state=present
 
