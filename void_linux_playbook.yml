@@ -66,7 +66,7 @@
           skeleton: ./skel.d
           shell: /bin/oksh
 
-      - name: Creating kshrc symlink
+      - name: Creating kshrc symlink for user "{{ create_user }}"
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
@@ -75,7 +75,7 @@
           owner: '{{ create_user }}'
           state: link
 
-      - name: Creating dot profile symlink
+      - name: Creating dot profile symlink for user "{{ create_user }}"
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
@@ -84,7 +84,7 @@
           owner: '{{ create_user }}'
           state: link        
 
-      - name: Creating inputrc symlink
+      - name: Creating inputrc symlink for user "{{ create_user }}"
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
@@ -93,7 +93,7 @@
           owner: '{{ create_user }}'
           state: link
 
-      - name: Creating xsession symlink
+      - name: Creating xsession symlink for user "{{ create_user }}"
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
@@ -103,7 +103,7 @@
           mode: '700'
           state: link
 
-      - name: Creating xsession symlink
+      - name: Creating xsession symlink for user "{{ create_user }}"
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
@@ -113,7 +113,7 @@
           mode: '700'
           state: link
 
-      - name: Creating xsessions symlink
+      - name: Creating xsessions symlink for user "{{ create_user }}"
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
@@ -123,7 +123,7 @@
           mode: '700'
           state: link
 
-      - name: Creating xinitrc symlink
+      - name: Creating xinitrc symlink for user "{{ create_user }}"
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
@@ -133,13 +133,17 @@
           mode: '700'
           state: link
 
-      - name: Making dwm autostart file executable
+      - name: Making dwm autostart file executable for user "{{ create_user }}"
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
           dest: '/home/{{ create_user }}/.config/dwm/autostart'
           mode: 'a+x'
-          
+
+      - name: Generate borgmatic configuration for user "{{ create_user }}"
+        become: yes
+        become_user: '{{ create_user }}'
+        template: src=./templates/borgmatic_config.yaml dest='/home/{{ create_user }}/.config/borgmatic/config.yaml'
 
       - name: Cloning dwm customization from Github
         become: yes

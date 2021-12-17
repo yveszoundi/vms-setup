@@ -1,0 +1,20 @@
+location:
+  source_directories:
+    - /home/{{ create_user }}/Documents
+    - /home/{{ create_user }}/Downloads
+    - /home/{{ create_user }}/Pictures
+    - /home/{{ create_user }}/Projects
+    - /home/{{ create_user }}/Backups/files
+  one_file_system: true
+  exclude_if_present: .nobackup
+  exclude_caches: true
+  repositories:
+    - /home/{{ create_user }}/Backups/borgmatic
+
+retention:
+  keep_daily: 2
+
+consistency:
+  checks:
+    - repository
+    - archives
