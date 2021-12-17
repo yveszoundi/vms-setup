@@ -1,11 +1,11 @@
 ---
 create_user: 'vip'
 packages_base: ['oksh','lrzip','screen']
-packages_sec: ['veracrypt','keepassxc','encfs']
+packages_sec: ['VeraCrypt','encfs','keepassxc']
 packages_editor: ['emacs', 'mg']
 packages_devel: ['base-devel','libXft-devel','libXinerama-devel']
 packages_utilities: ['ripgrep','git','gnupg']
-packages_java: ['openjdk11','apache-maven','gradle']
+packages_programming: ['openjdk11','apache-maven','gradle','nim']
 packages_productivity: ['mypaint','ImageMagick','graphviz','ghostscript','atril']
 packages_sound: ['alsa-utils','pulseaudio']
 packages_x11: ['xorg','wmname','xdm','elogind']
