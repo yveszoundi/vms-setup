@@ -1,3 +1,0 @@
-Steps
-- Find the location of your "Profile Folder" by typing "about:support" in the address/location bar
-- Copy the file user.js in that directory.
