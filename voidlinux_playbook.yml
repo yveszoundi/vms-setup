@@ -3,7 +3,7 @@
     hosts: localhost
     connection: local
     vars_files:
-      - vars/void_linux_vars.yml
+      - vars/voidlinux_vars.yml
 
     tasks:
       - name: Installing base system tools
@@ -97,48 +97,11 @@
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
-          src: '/home/{{ create_user }}/.config/x11/xsessionrc'
-          dest: '/home/{{ create_user }}/.xsessionrc'
-          owner: '{{ create_user }}'
-          mode: '700'
-          state: link
-
-      - name: Creating xsession symlink for user "{{ create_user }}"
-        become: yes
-        become_user: '{{ create_user }}'
-        ansible.builtin.file:
           src: '/home/{{ create_user }}/.config/x11/xsession'
           dest: '/home/{{ create_user }}/.xsession'
           owner: '{{ create_user }}'
           mode: '700'
-          state: link
-
-      - name: Creating xsessions symlink for user "{{ create_user }}"
-        become: yes
-        become_user: '{{ create_user }}'
-        ansible.builtin.file:
-          src: '/home/{{ create_user }}/.config/x11/xsession'
-          dest: '/home/{{ create_user }}/.xsessions'
-          owner: '{{ create_user }}'
-          mode: '700'
-          state: link
-
-      - name: Creating xinitrc symlink for user "{{ create_user }}"
-        become: yes
-        become_user: '{{ create_user }}'
-        ansible.builtin.file:
-          src: '/home/{{ create_user }}/.config/x11/xsession'
-          dest: '/home/{{ create_user }}/.xinitrc'
-          owner: '{{ create_user }}'
-          mode: '700'
-          state: link
-
-      - name: Making dwm autostart file executable for user "{{ create_user }}"
-        become: yes
-        become_user: '{{ create_user }}'
-        ansible.builtin.file:
-          dest: '/home/{{ create_user }}/.config/dwm/autostart'
-          mode: 'a+x'
+          state: link      
 
       - name: Generate borgmatic configuration for user "{{ create_user }}"
         become: yes

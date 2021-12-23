@@ -1,3 +1,9 @@
 #!/usr/bin/env ksh
 
-. $HOME/.xsessionrc
+. $HOME/.profile
+. $HOME/.kshrc
+
+xrandr --auto --output default --mode 1440x900
+xrdb -load $XRESOURCES
+
+exec /usr/local/bin/dwm

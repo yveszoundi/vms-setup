@@ -2,7 +2,7 @@
 create_user: 'vip'
 create_user_password: 'vip123'
 packages_base: ['oksh','lrzip','screen']
-packages_sec: ['VeraCrypt','encfs','keepassxc']
+packages_sec: ['VeraCrypt','encfs','keepassxc', 'age']
 packages_editor: ['emacs', 'mg']
 packages_devel: ['base-devel','libXft-devel','libXinerama-devel']
 packages_utilities: ['ripgrep','git','gnupg']
