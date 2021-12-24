@@ -7,14 +7,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(bookmark-save-flag 1)
- '(c-basic-offset 2)
- '(custom-safe-themes
-   '("6145e62774a589c074a31a05dfa5efdf8789cf869104e905956f0cbd7eda9d0e" default))
- '(groovy-indent-offset 2)
+ '(c-basic-offset 4) 
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
- '(initial-major-mode 'text-mode)
- '(initial-scratch-message "")
  '(js-indent-level 2)
  '(linum-format " %5i ")
  '(menu-bar-mode nil)
@@ -27,19 +22,13 @@
  '(safe-local-variable-values '((eval progn (outline-minor-mode 1) (outline-hide-body))))
  '(show-paren-mode t)
  '(tab-always-indent t)
- '(tab-width 2)
- '(typescript-indent-level 2))
+ '(tab-width 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "nil" :family "DejaVu Sans Mono"))))
- '(cursor ((t (:background "#d4ce7d" :foreground "magenta"))))
- '(dap-ui-pending-breakpoint-face ((t (:background "#magenta" :bold t :foreground "white"))))
- '(dap-ui-verified-breakpoint-face ((t (:background "#aa5aa1" :bold t :foreground "white"))))
- '(mode-line ((t (:background "grey30" :foreground "grey80" :box (:line-width -1 :style released-button)))))
- '(region ((t (:extend t :background "white" :foreground "black")))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "nil" :family "DejaVu Sans Mono")))))
 
 ;;;; begin-configuration
 (mapc 'require '(cl-lib subr-x))

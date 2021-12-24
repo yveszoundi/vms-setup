@@ -4,6 +4,7 @@
 . $HOME/.kshrc
 
 xrandr --auto --output default --mode 1440x900
+xmodmap $XDG_CONFIG_HOME/x11/Xmodmap
 xrdb -load $XRESOURCES
 
 exec /usr/local/bin/dwm

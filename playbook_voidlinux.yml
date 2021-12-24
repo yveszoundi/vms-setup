@@ -3,7 +3,7 @@
     hosts: localhost
     connection: local
     vars_files:
-      - vars/voidlinux_vars.yml
+      - vars/vars_voidlinux.yml
 
     tasks:
       - name: Installing base system tools
@@ -63,14 +63,14 @@
           groups: wheel,audio,cdrom,floppy,input,lp,scanner,video
           append: true
           create_home: true
-          skeleton: ./skel.d
+          skeleton: ./skeletons
           shell: /bin/oksh
 
       - name: Creating kshrc symlink for user "{{ create_user }}"
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
-          src: '/home/{{ create_user }}/.config/shell/okshrc'
+          src: '/home/{{ create_user }}/.config/shell/kshrc.Linux'
           dest: '/home/{{ create_user }}/.kshrc'
           owner: '{{ create_user }}'
           state: link
