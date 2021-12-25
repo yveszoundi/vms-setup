@@ -2,7 +2,7 @@
 create_user: 'vip'
 create_user_password: 'vip123'
 packages_base: []
-packages_sec: ['encfs','age']
+packages_sec: ['encfs','age', 'py3-passlib']
 packages_editor: []
 packages_devel: ['git']
 packages_utilities: ['rsync--']

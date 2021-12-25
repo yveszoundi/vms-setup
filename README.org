@@ -2,34 +2,47 @@
 
 * What is this?
 
-This is a set of [[https://docs.ansible.com/ansible/latest/index.html][ansible playbooks]] for Linux post-installation configuration, /primarly/ for use within virtual machines ([[https://www.qemu.org/][QEMU]], [[https://www.vmware.com/products/workstation-player.html][VMWare]], [[https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/][Hyper-V]], [[https://www.virtualbox.org/][VirtualBox]], etc.).
-- The goal *IS NOT* to create a very /user-friendly/ environment, but instead to have a usable system that doesn't demand much resources (CPU, RAM, etc.).
-- Not every virtual machine *requires* a graphical environment (backup server, penetration testing, media server, etc.). Even for general purposes, the UI doesn't always matter as long as you're comfortable with the command line. If you use *several* dedicated virtual machines (i.e. "a la" [[https://www.qubes-os.org/intro/][Qubes OS]]), not installing a UI saves resources.
+This is a set of [[https://docs.ansible.com/ansible/latest/index.html][ansible playbooks]] for system post-installation configuration, /primarly/ for use within virtual machines ([[https://www.qemu.org/][QEMU]], [[https://www.vmware.com/products/workstation-player.html][VMWare]], [[https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/][Hyper-V]], [[https://www.virtualbox.org/][VirtualBox]], etc.).
+- The goal *IS NOT* a /newbie-friendly/ environment. The only objective is a small system that is reasonably fast with low resources usage (CPU, RAM, etc.).
+- Not every virtual machine *requires* a graphical environment (backup server, penetration testing, media server, etc.). If you use *several* *dedicated* virtual machines (i.e. "a la" [[https://www.qubes-os.org/intro/][Qubes OS]]), not installing a UI saves resources.
 
 * What is required?
 
-- Supported Linux distros: Only [[https://voidlinux.org/][Void Linux]] is supported at this time.
-  - Q: Why /Void Linux/ first?
-  - A: Because it's a distro that I never had time to try
-- Package dependencies (the package name might vary from one Linux distro to another):
+- Supported operating systems: Linux ([[https://voidlinux.org/][Void Linux]]) and BSD ([[https://www.openbsd.org/][OpenBSD]])
+- Package dependencies (the package name might vary from one OS or Linux distribution to another):
   - [[https://en.wikipedia.org/wiki/Ansible_(software)][ansible]]: In order to run the provided ansible playbooks.
-  - [[https://en.wikipedia.org/wiki/Git][git]]: Unless you intend to manually download a zip archive of this repository.
+  - [[https://en.wikipedia.org/wiki/Git][git]]: To pull additional repositories (/including this one/) from revision control.
 
 * How do I use this?
 
 Please run the following commands in a terminal.
 
+** Clone this repository
+
 #+begin_src sh
-  git clone https://github.com/yveszoundi/vms-setup.git && cd vms-setup
-  ansible-playbook -v void_linux_playbook.yml -K
+   git clone https://github.com/yveszoundi/vms-setup.git
+   cd vms-setup
 #+end_src
 
- Once you're done with the above, wraup-up the configuration:
+** Apply configurations
+
+You can customize defaults as you please (=vars= directory), and then run one of the following commands:
+- For Linux, run =ansible-playbook -v voidlinux_playbook.yml -K=.
+- For OpenBSD, run =ansible-playbook -v openbsd_playbook.yml -K=.
+
+** Finish the setup
+
+ Once you're done with the above, wrap-up the configuration:
  - Open a terminal from the console (i.e. =CTRL-ALT-F2=).
- - Login with the newly created user =vip= and the password =vip123=
- - Please update your password when prompted
- - Logout using the =exit= command
- - Go to the [[https://en.wikipedia.org/wiki/XDM_(display_manager)][XDM]] display manager window (i.e. =CTRL-ALT-F7=)
- - Authenticate and you'll notice that you're inside the dwm window manager
- - Type =CTRL-t-k= to close =xconsole=
- - You can read more about the relevant [[https://github.com/yveszoundi/dwm-customization][dwm customizations on Github]]
+ - Login with the newly created user =vip= and the password =vip123= (see the =vars= directory).
+ - Please update your password immediately... (=passwd= command).
+ - Logout using the =exit= command.
+ - Go to the [[https://en.wikipedia.org/wiki/XDM_(display_manager)][XDM]] display manager window, if it's started and enabled (i.e. =CTRL-ALT-F7=).
+ - Authenticate and you'll notice that you're inside the dwm window manager.
+ - Type =CTRL-t-k= to close =xconsole=.
+ - You can read more about the relevant [[https://github.com/yveszoundi/dwm-customization][dwm customizations on Github]].
+
+* What's next?
+
+- Likely support for MacOS, FreeBSD.
+- Probably no support for Windows, as I don't /really/ use that OS (Hyper-V, Emacs, CMD prompt, File Explorer, Browser, what else???).

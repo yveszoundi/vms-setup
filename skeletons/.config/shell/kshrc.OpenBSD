@@ -23,7 +23,8 @@ alias mg='mg -n'
 
 backup_borgmatic_local() {
     echo "Please review/update your configuration and edit your .kshrc file."
-    #borgmatic --verbosity 1 --files                         
+    #borgmatic init $HOME/Backups/borgmatic -e repokey
+    #borgmatic --verbosity 1 -c $HOME/.config/borgmatic/config.yaml --files
 }
 
 backup_borgmatic_remote() {

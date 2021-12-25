@@ -59,7 +59,7 @@
         become: yes
         ansible.builtin.user:
           name: '{{ create_user }}'
-          password: "{{ create_user_password | password_hash('sha512') }}"
+          password: "{{ create_user_password | password_hash('blowfish') }}"
           state: present
           groups: wheel
           append: true
@@ -141,9 +141,6 @@
         with_items:
           - { src: '{{ github_repo_folder_dwm }}/dwm', dest: '{{ custom_binaries_folder }}/dwm' }
           - { src: '{{ github_repo_folder_st }}/st', dest: '{{ custom_binaries_folder }}/st' }
-
-      - name: Expiring password for user "{{ create_user }}"
-        command: "chage -d 0 {{ create_user }}"
 
       - name: Enable services
         become: yes
