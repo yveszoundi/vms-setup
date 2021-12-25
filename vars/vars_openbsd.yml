@@ -1,0 +1,22 @@
+---
+create_user: 'vip'
+create_user_password: 'vip123'
+packages_base: []
+packages_sec: ['encfs','age', 'py3-passlib']
+packages_editor: []
+packages_devel: ['git']
+packages_utilities: ['rsync--']
+packages_programming: []
+packages_productivity: []
+packages_sound: []
+packages_x11: []
+packages_desktop: ['dmenu']
+packages_fonts: ['terminus-font','liberation-fonts']
+packages_backup: ['borgmatic','rsync','rclone']
+github_repo_url_dwm: 'https://github.com/yveszoundi/dwm-customization.git'
+github_repo_url_st: 'https://github.com/yveszoundi/st-customization.git'
+github_repo_url_boomer: 'https://github.com/yveszoundi/boomer.git'
+github_repo_folder_dwm: '/tmp/dwm-custom'
+github_repo_folder_st: '/tmp/st-custom'
+github_repo_folder_boomer: '/tmp/boomer-custom'
+custom_binaries_folder: '/usr/local/bin'

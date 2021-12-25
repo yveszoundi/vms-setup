@@ -1,11 +1,11 @@
 ---
 create_user: 'vip'
 create_user_password: 'vip123'
-packages_base: ['oksh','lrzip','screen']
-packages_sec: ['VeraCrypt','encfs','keepassxc']
+packages_base: ['oksh','screen']
+packages_sec: ['VeraCrypt','encfs','keepassxc','age','gnupg']
 packages_editor: ['emacs', 'mg']
-packages_devel: ['base-devel','libXft-devel','libXinerama-devel']
-packages_utilities: ['ripgrep','git','gnupg']
+packages_devel: ['base-devel','libXft-devel','libXinerama-devel','git']
+packages_utilities: ['ripgrep']
 packages_programming: ['openjdk11','apache-maven','gradle','nim']
 packages_productivity: ['mypaint','ImageMagick','graphviz','ghostscript','atril']
 packages_sound: ['alsa-utils','pulseaudio']

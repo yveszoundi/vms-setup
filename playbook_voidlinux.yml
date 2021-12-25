@@ -3,7 +3,7 @@
     hosts: localhost
     connection: local
     vars_files:
-      - vars/void_linux_vars.yml
+      - vars/vars_voidlinux.yml
 
     tasks:
       - name: Installing base system tools
@@ -63,14 +63,14 @@
           groups: wheel,audio,cdrom,floppy,input,lp,scanner,video
           append: true
           create_home: true
-          skeleton: ./skel.d
+          skeleton: ./skeletons
           shell: /bin/oksh
 
       - name: Creating kshrc symlink for user "{{ create_user }}"
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
-          src: '/home/{{ create_user }}/.config/shell/okshrc'
+          src: '/home/{{ create_user }}/.config/shell/kshrc.Linux'
           dest: '/home/{{ create_user }}/.kshrc'
           owner: '{{ create_user }}'
           state: link
@@ -97,48 +97,11 @@
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
-          src: '/home/{{ create_user }}/.config/x11/xsessionrc'
-          dest: '/home/{{ create_user }}/.xsessionrc'
-          owner: '{{ create_user }}'
-          mode: '700'
-          state: link
-
-      - name: Creating xsession symlink for user "{{ create_user }}"
-        become: yes
-        become_user: '{{ create_user }}'
-        ansible.builtin.file:
           src: '/home/{{ create_user }}/.config/x11/xsession'
           dest: '/home/{{ create_user }}/.xsession'
           owner: '{{ create_user }}'
           mode: '700'
-          state: link
-
-      - name: Creating xsessions symlink for user "{{ create_user }}"
-        become: yes
-        become_user: '{{ create_user }}'
-        ansible.builtin.file:
-          src: '/home/{{ create_user }}/.config/x11/xsession'
-          dest: '/home/{{ create_user }}/.xsessions'
-          owner: '{{ create_user }}'
-          mode: '700'
-          state: link
-
-      - name: Creating xinitrc symlink for user "{{ create_user }}"
-        become: yes
-        become_user: '{{ create_user }}'
-        ansible.builtin.file:
-          src: '/home/{{ create_user }}/.config/x11/xsession'
-          dest: '/home/{{ create_user }}/.xinitrc'
-          owner: '{{ create_user }}'
-          mode: '700'
-          state: link
-
-      - name: Making dwm autostart file executable for user "{{ create_user }}"
-        become: yes
-        become_user: '{{ create_user }}'
-        ansible.builtin.file:
-          dest: '/home/{{ create_user }}/.config/dwm/autostart'
-          mode: 'a+x'
+          state: link      
 
       - name: Generate borgmatic configuration for user "{{ create_user }}"
         become: yes
@@ -191,9 +154,6 @@
           - { src: '{{ github_repo_folder_dwm }}/dwm', dest: '{{ custom_binaries_folder }}/dwm' }
           - { src: '{{ github_repo_folder_st }}/st', dest: '{{ custom_binaries_folder }}/st' }
           - { src: '{{ github_repo_folder_boomer }}/boomer', dest: '{{ custom_binaries_folder }}/boomer' }
-
-      - name: Expiring password for user "{{ create_user }}"
-        command: "chage -d 0 {{ create_user }}"
 
       - name: Creating startup services symlinks
         become: yes

@@ -1,0 +1,10 @@
+#!/usr/bin/env ksh
+
+. $HOME/.profile
+. $HOME/.kshrc
+
+xrandr --auto --output default --mode 1440x900
+setxkbmap -option ctrl:swapcaps
+xrdb -load $XRESOURCES
+
+exec /usr/local/bin/dwm

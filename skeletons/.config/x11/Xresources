@@ -20,10 +20,3 @@
 *.color14:      #61afef
 *.color7:       #abb2bf
 *.color15:      #c8ccd4
-
-*.normbordercolor: #282c34
-*.normbgcolor: #282c34
-*.normfgcolor: #c8ccd4
-*.selbordercolor: #be5046
-*.selbgcolor : #3e4451
-*.selfgcolor: #c8ccd4

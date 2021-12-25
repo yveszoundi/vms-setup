@@ -22,34 +22,12 @@ alias df='df -h'
 alias ll='ls -l'
 alias mkdir='mkdir -p'
 alias em='emacs -nw'
-export ls la em df ll mkdir
-
-backup_lrzip_folder() {
-    if [[ -d $1 ]]; then
-        input_dir="$1"
-        parent_dir="$(dirname "$input_dir")"
-        base_dir=$(basename "$1")
-        archive_name=${2:-"$input_dir"}
-        archive_name=$(basename $archive_name)
-
-        if [[ "$archive_name" == .* ]]; then
-            archive_name=$(echo $archive_name|cut -c2-)
-        fi
-
-        archive_location=$HOME/Backups/files/${archive_name}-$(date +%Y%m%d.%H%m%s).lrz
-        echo "Archiving ${input_dir} to ${archive_location}"
-        old_dir=$PWD
-        cd $parent_dir
-        lrztar -o ${archive_location} $base_dir
-        cd $old_dir
-    else
-        echo "$1 is not a valid directory!"
-    fi
-}
+alias mg='mg -n'
 
 backup_borgmatic_local() {
     echo "Please review/update your configuration and edit your .kshrc file."
-    #borgmatic --verbosity 1 --files                         
+    #borgmatic init $HOME/Backups/borgmatic -e repokey
+    #borgmatic --verbosity 1 -c $HOME/.config/borgmatic/config.yaml --files
 }
 
 backup_borgmatic_remote() {
