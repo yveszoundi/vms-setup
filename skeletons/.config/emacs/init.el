@@ -63,17 +63,18 @@
 
 (global-set-key (kbd "C-c wm") #'user/switch-window-max)
 
-(defun user/transpose-windows (arg)
-  "Transpose the buffers shown in two windows."
-  (interactive "p")
-  (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
-    (while (/= arg 0)
-      (let ((this-win (window-buffer))
-            (next-win (window-buffer (funcall selector))))
-        (set-window-buffer (selected-window) next-win)
-        (set-window-buffer (funcall selector) this-win)
-        (select-window (funcall selector)))
-      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+(defun ers/transpose-windows ()
+  "Transpose two windows.  If more or less than two windows are visible, error."
+  (interactive)
+  (unless (= 2 (count-windows))
+    (error "There are not 2 windows."))
+  (let* ((windows (window-list))
+         (w1 (car windows))
+         (w2 (nth 1 windows))
+         (w1b (window-buffer w1))
+         (w2b (window-buffer w2)))
+    (set-window-buffer w1 w2b)
+    (set-window-buffer w2 w1b)))
 
 ;;;; compression
 (add-hook 'after-init-hook #'auto-compression-mode)
@@ -341,7 +342,7 @@ With negative N, comment out original line and use the absolute value."
 (global-set-key (kbd "C-x C-b") #'ibuffer-list-buffers)
 (global-set-key (kbd "C-h [")   #'next-buffer)
 (global-set-key (kbd "C-h ]")   #'previous-buffer)
-(global-set-key (kbd "C-c r")   #'user/revert-buffer-no-confirm)
+(global-set-key (kbd "C-h C-r")   #'user/revert-buffer-no-confirm)
 (global-set-key (kbd "C-x M-k") #'user/kill-buffer-no-confirm)
 (global-set-key (kbd "C-x M-K") #'user/kill-buffer-matching-mode)
 
@@ -423,6 +424,21 @@ With negative N, comment out original line and use the absolute value."
 (setq ediff-split-window-function 'split-window-horizontally
       ediff-window-setup-function 'ediff-setup-windows-plain)
 
+;;;; vc
+(eval-after-load 'vc-git
+  (progn
+    (require 'vc-git)
+
+    (defun user/vc-git-clone ()
+      "Clone a git repository."
+      (interactive)
+      (let* ((repo-url         (read-string "Repo URL: " "https://github.com/"))
+             (dest-folder-name (file-name-nondirectory (file-name-sans-extension repo-url)))
+             (repo-dir         (read-directory-name "Destination: " (expand-file-name dest-folder-name default-directory))))
+        (vc-git-command nil 0 nil "clone" repo-url repo-dir)))
+
+    '(global-set-key (kbd "C-x vc") #'user/vc-git-clone)))
+
 ;;;; org-mode
 (with-eval-after-load 'org
   (setq org-use-speed-commands    t
@@ -459,8 +475,8 @@ With negative N, comment out original line and use the absolute value."
     (let (org-log-done org-log-states)   ; turn off logging
       (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
-  (defun user/org-mode-hook ()
-    (add-to-list 'org-structure-template-alist '("t" "#+TITLE: ?"))
+  (defun user/org-mode-hook ()    
+    (require 'org-tempo)
     (define-key org-mode-map (kbd "C-c ot") #'org-todo)
     (define-key org-mode-map (kbd "C-c oh") #'org-insert-heading)
     (define-key org-mode-map (kbd "C-c os") #'org-insert-subheading)
