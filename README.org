@@ -6,6 +6,8 @@ This is a set of [[https://docs.ansible.com/ansible/latest/index.html][ansible p
 - The goal *IS NOT* a /newbie-friendly/ environment. The only objective is a small system that is reasonably fast with low resources usage (CPU, RAM, etc.).
 - Not every virtual machine *requires* a graphical environment (backup server, penetration testing, media server, etc.). If you use *several* *dedicated* virtual machines (i.e. "a la" [[https://www.qubes-os.org/intro/][Qubes OS]]), not installing a UI saves resources.
 
+  The default shell is [[https://en.wikipedia.org/wiki/KornShell][Ksh]], the [[https://man.openbsd.org/ksh.1][OpenBSD flavor]].
+
 * What is required?
 
 - Supported operating systems: Linux ([[https://voidlinux.org/][Void Linux]]) and BSD ([[https://www.openbsd.org/][OpenBSD]])
