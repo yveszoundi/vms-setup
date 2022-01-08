@@ -461,7 +461,7 @@ With negative N, comment out original line and use the absolute value."
       (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
   (defun user/org-mode-hook ()
-    (add-to-list 'org-structure-template-alist '("t" "#+TITLE: ?"))
+    (require 'org-tempo)
     (define-key org-mode-map (kbd "C-c ot") #'org-todo)
     (define-key org-mode-map (kbd "C-c oh") #'org-insert-heading)
     (define-key org-mode-map (kbd "C-c os") #'org-insert-subheading)
