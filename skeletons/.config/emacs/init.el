@@ -14,7 +14,7 @@
  '(linum-format " %5i ")
  '(menu-bar-mode nil)
  '(package-check-signature nil)
- '(package-selected-packages '(base16-theme avy))
+ '(package-selected-packages '(base16-theme avy multiple-cursors))
  '(plantuml-java-args
    '("-Djava.awt.headless=true" "-jar" "--illegal-access=deny"))
  '(recentf-mode t)
@@ -271,10 +271,11 @@ With negative N, comment out original line and use the absolute value."
 ;;;; transpose
 (global-unset-key (kbd "M-t"))
 (global-unset-key (kbd "C-t"))
-(global-set-key (kbd "M-t c") #'transpose-chars)
-(global-set-key (kbd "M-t l") #'transpose-lines)
-(global-set-key (kbd "M-t s") #'transpose-sexps)
-(global-set-key (kbd "M-t w") #'user/transpose-windows)
+(global-unset-key (kbd "C-x C-t"))
+(global-set-key (kbd "C-x C-t c") #'transpose-chars)
+(global-set-key (kbd "C-x C-t l") #'transpose-lines)
+(global-set-key (kbd "C-x C-t s") #'transpose-sexps)
+(global-set-key (kbd "C-x C-t w") #'user/transpose-windows)
 
 ;;;; things-at-point
 (defun user/cut-symbol-at-point ()
@@ -342,9 +343,16 @@ With negative N, comment out original line and use the absolute value."
 (global-set-key (kbd "C-x C-b") #'ibuffer-list-buffers)
 (global-set-key (kbd "C-h [")   #'next-buffer)
 (global-set-key (kbd "C-h ]")   #'previous-buffer)
-(global-set-key (kbd "C-h C-r")   #'user/revert-buffer-no-confirm)
+(global-set-key (kbd "C-h C-r") #'user/revert-buffer-no-confirm)
 (global-set-key (kbd "C-x M-k") #'user/kill-buffer-no-confirm)
 (global-set-key (kbd "C-x M-K") #'user/kill-buffer-matching-mode)
+
+;;;; multiple-cursors
+(eval-after-load 'multiple-cursors
+  (progn
+    (require 'multiple-cursors)
+    (global-set-key (kbd "C-c me") 'mc/edit-lines)
+    '(global-set-key (kbd "C-c ma") 'mc/mark-all-like-this)))
 
 ;;;; xml
 (setq nxml-slash-auto-complete-flag t
@@ -482,6 +490,7 @@ With negative N, comment out original line and use the absolute value."
 (add-to-list 'auto-mode-alist '("\\.env\\'" . sh-mode))
 
 (global-set-key (kbd "C-x C-m") #'execute-extended-command)
+(global-set-key (kbd "M-s j")   #'avy-goto-char)
 (global-set-key (kbd "M-s l")   #'goto-line)
 (global-set-key (kbd "M-s e")   #'eshell)
 (global-set-key (kbd "M-s s")   #'grep-find)
@@ -489,6 +498,8 @@ With negative N, comment out original line and use the absolute value."
 (global-set-key (kbd "M-s r")   #'recentf-open-files)
 (global-set-key (kbd "M-Z")     #'zap-up-to-char)
 (global-set-key (kbd "M-z")     #'zap-to-char)
+(global-set-key (kbd "M-\"")    #'xref-find-apropos)
+(global-set-key (kbd "M-s i")   #'imenu)
 
 ;;;; disabled-commands
 (put 'erase-buffer     'disabled nil)

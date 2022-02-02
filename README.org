@@ -11,7 +11,7 @@ This is a set of [[https://docs.ansible.com/ansible/latest/index.html][ansible p
 * What is required?
 
 - Supported operating systems: Linux ([[https://voidlinux.org/][Void Linux]]) and BSD ([[https://www.openbsd.org/][OpenBSD]])
-- Package dependencies (the package name might vary from one OS or Linux distribution to another):
+- Package dependencies (the package names might vary from any any BSD or Linux variant to another):
   - [[https://en.wikipedia.org/wiki/Ansible_(software)][ansible]]: In order to run the provided ansible playbooks.
   - [[https://en.wikipedia.org/wiki/Git][git]]: To pull additional repositories (/including this one/) from revision control.
 
@@ -28,9 +28,9 @@ Please run the following commands in a terminal.
 
 ** Apply configurations
 
-You can customize defaults as you please (=vars= directory), and then run one of the following commands:
-- For Linux, run =ansible-playbook -v voidlinux_playbook.yml -K=.
-- For OpenBSD, run =ansible-playbook -v openbsd_playbook.yml -K=.
+You can customize defaults as you please (=vars= directory), and then run one of the following commands as =root=:
+- For Linux, run =ansible-playbook -v playbook_voidlinux.yml -K=.
+- For OpenBSD, run =ansible-playbook -v playbook_openbsd.yml -K=.
 
 ** Finish the setup
 
