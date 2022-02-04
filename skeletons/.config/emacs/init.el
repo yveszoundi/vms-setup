@@ -14,7 +14,7 @@
  '(linum-format " %5i ")
  '(menu-bar-mode nil)
  '(package-check-signature nil)
- '(package-selected-packages '(base16-theme avy multiple-cursors))
+ '(package-selected-packages '(base16-theme xclip avy multiple-cursors))
  '(plantuml-java-args
    '("-Djava.awt.headless=true" "-jar" "--illegal-access=deny"))
  '(recentf-mode t)
@@ -532,6 +532,12 @@ With negative N, comment out original line and use the absolute value."
 ;;;; xref
 (with-eval-after-load 'xref
   (global-set-key (kbd "M-\"") 'xref-find-apropos))
+
+;;;; clipboard
+(eval-after-load 'xclip
+  (progn
+    (require 'xclip)
+    '(add-hook 'after-init-hook 'xclip-mode)))
 
 ;;;; additional-settings
 (unless (display-graphic-p)

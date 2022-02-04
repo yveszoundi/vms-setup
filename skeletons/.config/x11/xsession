@@ -3,7 +3,7 @@
 . $HOME/.profile
 . $HOME/.kshrc
 
-xrandr --auto --output default --mode 1440x900
+xrandr --auto --output Virtual-1 --mode 1440x900
 setxkbmap -option ctrl:swapcaps
 xrdb -load $XRESOURCES
 
