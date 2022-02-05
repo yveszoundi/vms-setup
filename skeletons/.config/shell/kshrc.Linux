@@ -50,3 +50,11 @@ cloud_drive_vault_umount() {
     echo "Please review/update your configuration and edit your .kshrc file."
     #fusermount -u $HOME/CloudDrive/decrypted-data-path
 }
+
+window_maximize() {
+    xrandr --auto --output Virtual-1 --mode 1920x1080
+}
+
+window_restore() {
+    xrandr --auto --output Virtual-1 --mode 1440x900
+}
