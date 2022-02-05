@@ -155,9 +155,7 @@
           - { src: '{{ github_repo_folder_st }}/st', dest: '{{ custom_binaries_folder }}/st' }
           - { src: '{{ github_repo_folder_boomer }}/boomer', dest: '{{ custom_binaries_folder }}/boomer' }
           - { src: '/home/{{ create_user }}/.config/borgmatic/config.yaml' dest: '{{ custom_binaries_folder }}/boomer' }
-          - { src: '/home/{{ create_user }}/.config/clipboard-remoting/clipboard-copy' dest: '{{ custom_binaries_folder }}/clipboard-copy' }
-          - { src: '/home/{{ create_user }}/.config/clipboard-remoting/clipboard-paste' dest: '{{ custom_binaries_folder }}/clipboard-paste' }
-          - { src: '/home/{{ create_user }}/.config/clipboard-remoting/xclip-helper' dest: '{{ custom_binaries_folder }}/xclip-helper' }          
+          - { src: '/home/{{ create_user }}/.config/clipboard/xclip-helper' dest: '{{ custom_binaries_folder }}/xclip-helper' }          
 
       - name: Creating startup services symlinks
         become: yes
