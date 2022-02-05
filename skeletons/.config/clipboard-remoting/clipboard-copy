@@ -1,2 +1,0 @@
-#!/bin/sh
-clipboard-cli --server-host 10.0.2.2 --clipboard-program /usr/local/bin/xclip-helper
