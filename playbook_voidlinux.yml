@@ -154,11 +154,11 @@
           - { src: '{{ github_repo_folder_dwm }}/dwm', dest: '{{ custom_binaries_folder }}/dwm' }
           - { src: '{{ github_repo_folder_st }}/st', dest: '{{ custom_binaries_folder }}/st' }
           - { src: '{{ github_repo_folder_boomer }}/boomer', dest: '{{ custom_binaries_folder }}/boomer' }
-          - { src: '/home/{{ create_user }}/.config/borgmatic/config.yaml' dest: '{{ custom_binaries_folder }}/boomer' }
-          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-copy' dest: '{{ custom_binaries_folder }}/rclip-copy' }
-          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-paste' dest: '{{ custom_binaries_folder }}/rclip-paste' }
-          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-xclip-copy' dest: '{{ custom_binaries_folder }}/rclip-xclip-copy' }
-          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-xclip-paste' dest: '{{ custom_binaries_folder }}/rclip-xclip-paste' }
+          - { src: '/home/{{ create_user }}/.config/borgmatic/config.yaml', dest: '{{ custom_binaries_folder }}/boomer' }
+          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-copy', dest: '{{ custom_binaries_folder }}/rclip-copy' }
+          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-paste', dest: '{{ custom_binaries_folder }}/rclip-paste' }
+          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-xclip-copy', dest: '{{ custom_binaries_folder }}/rclip-xclip-copy' }
+          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-xclip-paste', dest: '{{ custom_binaries_folder }}/rclip-xclip-paste' }
 
       - name: Creating startup services symlinks
         become: yes
