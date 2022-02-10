@@ -2,7 +2,6 @@ TERM=xterm-256color
 RSYNC_RSH=ssh
 EDITOR=mg
 PAGER=less
-CLICOLOR=1
 HISTSIZE=4096
 HISTFILE=$HOME/.history
 XDG_CONFIG_HOME=$HOME/.config
@@ -10,13 +9,12 @@ XDG_DATA_HOME=$HOME/.local/share
 SCREENRC=$XDG_CONFIG_HOME/screen/screenrc
 XRESOURCES=$XDG_CONFIG_HOME/x11/Xresources
 
-export PAGER TERM RSYNC_RSH CLICOLOR SCREENRC XRESOURCES EDITOR
+export PAGER TERM RSYNC_RSH SCREENRC XRESOURCES EDITOR
 export HISTFILE HISTSIZE
 export XDG_CONFIG_HOME XDG_DATA_HOME
 
 set -o emacs
 
-alias ls='ls --color=auto'
 alias la='ls -al'
 alias df='df -h'
 alias ll='ls -l'

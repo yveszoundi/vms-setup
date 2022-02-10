@@ -70,7 +70,7 @@
         become: yes
         become_user: '{{ create_user }}'
         ansible.builtin.file:
-          src: '/home/{{ create_user }}/.config/shell/kshrc.Linux'
+          src: '/home/{{ create_user }}/.config/shell/kshrc'
           dest: '/home/{{ create_user }}/.kshrc'
           owner: '{{ create_user }}'
           state: link
@@ -82,7 +82,7 @@
           src: '/home/{{ create_user }}/.config/shell/profile'
           dest: '/home/{{ create_user }}/.profile'
           owner: '{{ create_user }}'
-          state: link        
+          state: link
 
       - name: Creating inputrc symlink for user "{{ create_user }}"
         become: yes
@@ -101,7 +101,7 @@
           dest: '/home/{{ create_user }}/.xsession'
           owner: '{{ create_user }}'
           mode: '700'
-          state: link      
+          state: link
 
       - name: Generate borgmatic configuration for user "{{ create_user }}"
         become: yes
@@ -155,7 +155,10 @@
           - { src: '{{ github_repo_folder_st }}/st', dest: '{{ custom_binaries_folder }}/st' }
           - { src: '{{ github_repo_folder_boomer }}/boomer', dest: '{{ custom_binaries_folder }}/boomer' }
           - { src: '/home/{{ create_user }}/.config/borgmatic/config.yaml' dest: '{{ custom_binaries_folder }}/boomer' }
-          - { src: '/home/{{ create_user }}/.config/clipboard/xclip-helper' dest: '{{ custom_binaries_folder }}/xclip-helper' }          
+          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-copy' dest: '{{ custom_binaries_folder }}/rclip-copy' }
+          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-paste' dest: '{{ custom_binaries_folder }}/rclip-paste' }
+          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-xclip-copy' dest: '{{ custom_binaries_folder }}/rclip-xclip-copy' }
+          - { src: '/home/{{ create_user }}/.config/clipboard/rclip-xclip-paste' dest: '{{ custom_binaries_folder }}/rclip-xclip-paste' }
 
       - name: Creating startup services symlinks
         become: yes

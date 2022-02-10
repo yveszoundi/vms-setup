@@ -1,0 +1,2 @@
+#!/bin/sh
+rclip-client-cli --server-host 10.0.2.2 --command WRITE --clipboard-program /usr/local/bin/rclip-xclip-copy
