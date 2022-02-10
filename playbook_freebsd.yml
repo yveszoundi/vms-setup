@@ -9,51 +9,51 @@
     tasks:
       - name: Installing base system tools
         become: yes
-        community.general.pkgin: name={{ packages_base }} state=present
+        community.general.pkgng: name={{ packages_base }} state=present
 
       - name: Installing editors
         become: yes
-        community.general.pkgin: name={{ packages_editor }} state=present
+        community.general.pkgng: name={{ packages_editor }} state=present
 
       - name: Installing devel tools
         become: yes
-        community.general.pkgin: name={{ packages_devel }} state=present
+        community.general.pkgng: name={{ packages_devel }} state=present
 
       - name: Installing utilities
         become: yes
-        community.general.pkgin: name={{ packages_utilities }} state=present
+        community.general.pkgng: name={{ packages_utilities }} state=present
 
       - name: Installing productivity packages
         become: yes
-        community.general.pkgin: name={{ packages_productivity }} state=present
+        community.general.pkgng: name={{ packages_productivity }} state=present
 
       - name: Installing sound packages
         become: yes
-        community.general.pkgin: name={{ packages_sound }} state=present
+        community.general.pkgng: name={{ packages_sound }} state=present
 
       - name: Installing additional programming tools
         become: yes
-        community.general.pkgin: name={{ packages_programming }}  state=present
+        community.general.pkgng: name={{ packages_programming }}  state=present
 
       - name: Installing x11 tools
         become: yes
-        community.general.pkgin: name={{ packages_x11 }}  state=present
+        community.general.pkgng: name={{ packages_x11 }}  state=present
 
       - name: Installing desktop tools
         become: yes
-        community.general.pkgin: name={{ packages_desktop }} state=present
+        community.general.pkgng: name={{ packages_desktop }} state=present
 
       - name: Installing fonts
         become: yes
-        community.general.pkgin: name={{ packages_fonts}} state=present
+        community.general.pkgng: name={{ packages_fonts}} state=present
 
       - name: Installing backup tools
         become: yes
-        community.general.pkgin: name={{ packages_backup }} state=present
+        community.general.pkgng: name={{ packages_backup }} state=present
 
       - name: Installing security tools
         become: yes
-        community.general.pkgin: name={{ packages_sec }} state=present
+        community.general.pkgng: name={{ packages_sec }} state=present
 
       - name: Creating user "{{ create_user }}"
         become: yes
