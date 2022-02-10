@@ -2,17 +2,17 @@
 create_user: 'vip'
 create_user_password: 'vip123'
 packages_base: []
-packages_sec: ['fuse-encfs', 'py39-passlib', 'age', 'mozilla-rootcerts-openssl']
+packages_sec: ['fuse-encfs', 'py38-passlib', 'age']
 packages_editor: ['mg']
 packages_devel: ['git']
 packages_utilities: ['rsync']
 packages_programming: []
 packages_productivity: []
 packages_sound: []
-packages_x11: ['xclip']
+packages_x11: ['xclip', 'xdm', 'xorg']
 packages_desktop: ['dmenu']
-packages_fonts: ['terminus-font','liberation-ttf']
-packages_backup: ['rsync','rclone']
+packages_fonts: ['terminus-font','liberation-fonts-ttf']
+packages_backup: ['py38-borgmatic','rsync','rclone']
 github_repo_url_dwm: 'https://github.com/yveszoundi/dwm-customization.git'
 github_repo_url_st: 'https://github.com/yveszoundi/st-customization.git'
 github_repo_url_boomer: 'https://github.com/yveszoundi/boomer.git'
