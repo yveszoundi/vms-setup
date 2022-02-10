@@ -64,7 +64,7 @@
           groups: wheel
           append: true
           create_home: true
-          skeleton: ./skeletons
+          skeleton: '{{ playbook_dir }}/skeletons'
           shell: /bin/ksh
 
       - name: Creating kshrc symlink for user "{{ create_user }}"

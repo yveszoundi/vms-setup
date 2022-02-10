@@ -63,7 +63,7 @@
           groups: wheel,audio,cdrom,floppy,input,lp,scanner,video
           append: true
           create_home: true
-          skeleton: ./skeletons
+          skeleton: '{{ playbook_dir }}/skeletons'
           shell: /bin/oksh
 
       - name: Creating kshrc symlink for user "{{ create_user }}"
