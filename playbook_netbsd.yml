@@ -57,7 +57,7 @@
 
       - name: Create doas configuration
         shell: |
-          echo 'permit keepenv persist :wheel' > /usr/local/etc/doas.conf          
+          echo 'permit keepenv persist :wheel' > /usr/pkg/etc/doas.conf          
 
       - name: Creating user "{{ create_user }}"
         become: yes
