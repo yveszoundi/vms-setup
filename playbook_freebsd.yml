@@ -55,6 +55,10 @@
         become: yes
         community.general.pkgng: name={{ packages_sec }} state=present
 
+      - name: Create doas configuration
+        shell: |
+          echo 'permit keepenv persist :wheel' > /usr/local/etc/doas.conf          
+
       - name: Creating user "{{ create_user }}"
         become: yes
         ansible.builtin.user:
@@ -65,7 +69,7 @@
           append: true
           create_home: true
           skeleton: '{{ playbook_dir }}/skeletons'
-          shell: /bin/ksh
+          shell: /usr/local/bin/oksh
 
       - name: Creating kshrc symlink for user "{{ create_user }}"
         become: yes
@@ -75,6 +79,13 @@
           dest: '/home/{{ create_user }}/.kshrc'
           owner: '{{ create_user }}'
           state: link
+
+      - name: Symlink oksh to ksh
+        become: yes
+        ansible.builtin.file:
+          src: '/usr/local/bin/oksh'
+          dest: '/usr/local/bin/ksh'
+          state: link        
 
       - name: Creating dot profile symlink for user "{{ create_user }}"
         become: yes

@@ -2,7 +2,7 @@
 create_user: 'vip'
 create_user_password: 'vip123'
 packages_base: []
-packages_sec: ['fuse-encfs', 'py39-passlib', 'age', 'mozilla-rootcerts-openssl']
+packages_sec: ['fuse-encfs', 'py39-passlib', 'age', 'mozilla-rootcerts-openssl', 'doas']
 packages_editor: ['mg']
 packages_devel: ['git']
 packages_utilities: ['rsync']

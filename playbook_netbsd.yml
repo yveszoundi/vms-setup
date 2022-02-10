@@ -55,11 +55,15 @@
         become: yes
         community.general.pkgin: name={{ packages_sec }} state=present
 
+      - name: Create doas configuration
+        shell: |
+          echo 'permit keepenv persist :wheel' > /usr/local/etc/doas.conf          
+
       - name: Creating user "{{ create_user }}"
         become: yes
         ansible.builtin.user:
           name: '{{ create_user }}'
-          password: "{{ create_user_password | password_hash('blowfish') }}"
+          password: "{{ create_user_password | password_hash('sha512') }}"
           state: present
           groups: wheel
           append: true
@@ -135,6 +139,12 @@
         make:
           chdir: '{{ github_repo_folder_st }}'
 
+      - name: Create usr_local_bin folder
+        ansible.builtin.file:
+          path: /usr/local/bin
+          state: directory
+          mode: '0755'
+        
       - name: Copying custom binaries to "{{ custom_binaries_folder }}"
         become: yes
         copy: src={{ item.src }} dest={{ item.dest }} mode='a+x'

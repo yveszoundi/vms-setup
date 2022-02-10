@@ -1,8 +1,8 @@
 ---
 create_user: 'vip'
 create_user_password: 'vip123'
-packages_base: []
-packages_sec: ['fusefs-encfs', 'py38-passlib', 'age']
+packages_base: ['oksh', 'pkgconf']
+packages_sec: ['fusefs-encfs', 'py38-passlib', 'age', 'doas']
 packages_editor: ['mg']
 packages_devel: ['git']
 packages_utilities: ['rsync']
