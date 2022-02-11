@@ -10,7 +10,7 @@ This is a set of [[https://docs.ansible.com/ansible/latest/index.html][ansible p
 
 * What is required?
 
-- Supported operating systems: Linux ([[https://voidlinux.org/][Void Linux]]) and BSD ([[https://www.openbsd.org/][OpenBSD]])
+- Supported operating systems: Linux ([[https://voidlinux.org/][Void Linux]]) and BSD ([[https://www.openbsd.org/][OpenBSD]], [[https://netbsd.org/][NetBSD]], [[https://www.freebsd.org/][FreeBSD]])
 - Package dependencies (the package names might vary from any any BSD or Linux variant to another):
   - [[https://en.wikipedia.org/wiki/Ansible_(software)][ansible]]: In order to run the provided ansible playbooks.
   - [[https://en.wikipedia.org/wiki/Git][git]]: To pull additional repositories (/including this one/) from revision control.
@@ -46,5 +46,8 @@ You can customize defaults as you please (=vars= directory), and then run one of
 
 * What's next?
 
-- Likely support for MacOS, FreeBSD.
-- Probably no support for Windows, as I don't /really/ use that OS (Hyper-V, Emacs, CMD prompt, File Explorer, Browser, what else???).
+- Dedicated playbooks focused on the purpose instead of an OS centric view (Password manager VM, VPN VM, Firewall VM, etc.)
+- Review omnipotence and correctness/clarity for some of the configurations:
+  - User creation and initial password on NetBSD
+  - Some requirements are hidden (=pkgin= installation on NetBSD, etc.)
+  
