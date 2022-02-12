@@ -70,7 +70,6 @@
           create_home: true
           skeleton: '{{ playbook_dir }}/skeletons'
           shell: /bin/ksh
-          update: on_create
 
       - name: Update password for user "{{ create_user }}"
         become: yes
