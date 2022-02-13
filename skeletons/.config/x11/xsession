@@ -3,8 +3,11 @@
 . $HOME/.profile
 . $HOME/.kshrc
 
-xrandr --auto --output Virtual-1 --mode 1440x900
+output_device=$(xrandr --query | grep -i connected | awk '{print $1}')
+xrandr --auto --output ${output_device} --mode 1440x900
+
 setxkbmap -option ctrl:swapcaps
+
 xrdb -load $XRESOURCES
 
 exec /usr/local/bin/dwm
