@@ -57,7 +57,7 @@
 
       - name: Create doas configuration
         shell: |
-          echo 'permit keepenv :wheel' > /usr/local/etc/doas.conf          
+          echo 'permit keepenv :wheel' > /usr/local/etc/doas.conf
 
       - name: Creating user "{{ create_user }}"
         become: yes
@@ -85,7 +85,7 @@
         ansible.builtin.file:
           src: '/usr/local/bin/oksh'
           dest: '/usr/local/bin/ksh'
-          state: link        
+          state: link
 
       - name: Creating dot profile symlink for user "{{ create_user }}"
         become: yes
@@ -94,7 +94,7 @@
           src: '/home/{{ create_user }}/.config/shell/profile'
           dest: '/home/{{ create_user }}/.profile'
           owner: '{{ create_user }}'
-          state: link        
+          state: link
 
       - name: Creating inputrc symlink for user "{{ create_user }}"
         become: yes
@@ -113,7 +113,7 @@
           dest: '/home/{{ create_user }}/.xsession'
           owner: '{{ create_user }}'
           mode: '700'
-          state: link      
+          state: link
 
       - name: Generate borgmatic configuration for user "{{ create_user }}"
         become: yes
@@ -132,7 +132,7 @@
         become_user: '{{ create_user }}'
         ansible.builtin.git:
           repo: '{{ github_repo_url_st }}'
-          dest: '{{ github_repo_folder_st }}'      
+          dest: '{{ github_repo_folder_st }}'
 
       - name: Compiling dwm
         become: yes
