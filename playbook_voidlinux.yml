@@ -1,5 +1,5 @@
 ---
-  - name: Void Linux Setup
+  - name: Void Linux machine setup
     hosts: localhost
     connection: local
     vars_files:

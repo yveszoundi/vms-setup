@@ -1,5 +1,5 @@
 ---
-  - name: NetBSD Setup
+  - name: NetBSD machine setup
     hosts: localhost
     connection: local
     become_method: su

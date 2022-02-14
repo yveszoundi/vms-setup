@@ -1,5 +1,5 @@
 ---
-  - name: OpenBSD Setup
+  - name: OpenBSD machine setup
     hosts: localhost
     connection: local
     become_method: su

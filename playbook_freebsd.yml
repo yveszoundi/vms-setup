@@ -1,5 +1,5 @@
 ---
-  - name: FreeBSD Setup
+  - name: FreeBSD machine setup
     hosts: localhost
     connection: local
     become_method: su
@@ -145,6 +145,10 @@
         become_user: '{{ create_user }}'
         make:
           chdir: '{{ github_repo_folder_st }}'
+
+      - name: "Downloading rclip-client"
+        become: yes
+        become_user: '{{ github_release_url_rclip }}'
 
       - name: Copying custom binaries to "{{ custom_binaries_folder }}"
         become: yes

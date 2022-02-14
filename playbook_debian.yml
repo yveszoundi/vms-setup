@@ -1,0 +1,63 @@
+---
+  - name: Debian machine setup
+    hosts: localhost
+    connection: local
+    vars_files:
+      - vars/vars_debian.yml
+
+    tasks:
+      - name: Installing base system tools
+        become: yes
+        apt: name={{ packages_base }} state=present
+
+      - name: Add dangerzone repository
+        become: yes
+        shell: |
+          curl -s https://packagecloud.io/install/repositories/firstlookmedia/code/script.deb.sh | bash
+          apt-get update
+
+      - name: Installing editors
+        become: yes
+        apt: name={{ packages_editor }} state=present
+
+      - name: Installing devel tools
+        become: yes
+        apt: name={{ packages_devel }} state=present
+
+      - name: Installing utilities
+        become: yes
+        apt: name={{ packages_utilities }} state=present
+
+      - name: Installing productivity packages
+        become: yes
+        apt: name={{ packages_productivity }} state=present
+
+      - name: Installing sound packages
+        become: yes
+        apt: name={{ packages_sound }} state=present
+
+      - name: Installing additional programming tools
+        become: yes
+        apt: name={{ packages_programming }}  state=present
+
+      - name: Installing x11 tools
+        become: yes
+        apt: name={{ packages_x11 }}  state=present
+
+      - name: Installing desktop tools
+        become: yes
+        apt: name={{ packages_desktop }} state=present
+
+      - name: Installing fonts
+        become: yes
+        apt: name={{ packages_fonts}} state=present
+
+      - name: Installing backup tools
+        become: yes
+        apt: name={{ packages_backup }} state=present
+
+      - name: Installing security tools
+        become: yes
+        apt: name={{ packages_sec }} state=present
+
+
