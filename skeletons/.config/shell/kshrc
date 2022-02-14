@@ -50,9 +50,11 @@ cloud_drive_vault_umount() {
 }
 
 window_maximize() {
-    xrandr --auto --output Virtual-1 --mode 1920x1080
+    output_device=$(xrandr --query | grep -i connected | awk '{print $1}')
+    xrandr --auto --output ${output_device} --mode 1920x1080
 }
 
 window_restore() {
-    xrandr --auto --output Virtual-1 --mode 1440x900
+    output_device=$(xrandr --query | grep -i connected | awk '{print $1}')
+    xrandr --auto --output ${output_device} --mode 1440x900
 }
