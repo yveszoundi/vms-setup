@@ -172,6 +172,6 @@
       - name: Copy doas.conf defaults
         become: yes
         ansible.builtin.copy:
-          src: './templates/opendoas.conf'
+          content: 'permit keepenv :wheel'
           dest: '/usr/local/etc/doas.conf'
           force: 'no'
