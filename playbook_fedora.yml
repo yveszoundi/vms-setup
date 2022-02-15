@@ -54,4 +54,32 @@
         become: yes
         dnf: name={{ packages_sec }} state=present
 
+      - name: Copy doas.conf defaults
+        become: yes
+        ansible.builtin.copy:
+          src: './templates/opendoas.conf'
+          dest: '/etc/doas.conf'
+          force: 'no'
 
+      - name: "Downloading rclip-client"
+        become: yes
+        become_user: '{{ create_user }}'
+        get_url:
+          uri: '{{ github_release_url_rclip }}'
+          dest: '{{ github_dest_archive_rclip }}'
+
+      - name: Extract rclip-client
+        become: yes
+        become_user: '{{ create_user }}'
+        shell: |
+          cd /tmp
+          tar xf {{ github_dest_archive_rclip }} --strip-components=1
+          rm {{ github_dest_archive_rclip }}
+
+      - name: "Copy rclip-client binaries"
+        become: yes
+        copy: src='{{item.src}}' dest='{{item.dest}}' mode='a+x'
+        with_items:
+          - src: '/tmp/rclip-client-cli' dest: '{{ custom_binaries_folder }}/rclip-client-cli'
+          - src: '/tmp/rclip-client-gui dest: '{{ custom_binaries_folder }}/rclip-client-gui
+          

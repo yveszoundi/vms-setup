@@ -147,6 +147,20 @@
           chdir: '{{ github_repo_folder_boomer }}'
           cmd: nimble build -y
 
+      - name: "Downloading rclip-client"
+        become: yes
+        become_user: '{{ create_user }}'
+        get_url:
+          uri: '{{ github_release_url_rclip }}'
+          dest: '{{ github_dest_archive_rclip }}'
+
+      - name: Extract rclip-client
+        become: yes
+        become_user: '{{ create_user }}'
+        shell: |
+          tar xf {{ github_dest_archive_rclip }} --strip-components=1
+          rm {{ github_dest_archive_rclip }}
+
       - name: Copying custom binaries to "{{ custom_binaries_folder }}"
         become: yes
         copy: src={{ item.src }} dest={{ item.dest }} mode='a+x'
@@ -159,6 +173,7 @@
           - { src: '/home/{{ create_user }}/.config/clipboard/rclip-paste', dest: '{{ custom_binaries_folder }}/rclip-paste' }
           - { src: '/home/{{ create_user }}/.config/clipboard/rclip-xclip-copy', dest: '{{ custom_binaries_folder }}/rclip-xclip-copy' }
           - { src: '/home/{{ create_user }}/.config/clipboard/rclip-xclip-paste', dest: '{{ custom_binaries_folder }}/rclip-xclip-paste' }
+          - { src: '/tmp/rclip-client-cli', dest: '{{ custom_binaries_folder }}/rclip-client-cli' }
 
       - name: Creating startup services symlinks
         become: yes
@@ -171,3 +186,10 @@
           - { path: 'polkitd', dest: 'polkitd' }
           - { path: 'elogind', dest: 'elogind' }
           - { path: 'xdm', dest: 'xdm' }
+
+      - name: Copy doas.conf defaults
+        become: yes
+        ansible.builtin.copy:
+          src: './templates/opendoas.conf'
+          dest: '/etc/doas.conf'
+          force: 'no'

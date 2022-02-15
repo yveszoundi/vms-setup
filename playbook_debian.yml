@@ -60,4 +60,13 @@
         become: yes
         apt: name={{ packages_sec }} state=present
 
+      - name: Copying additional configurations
+        become: yes
+        copy: src={{ item.src }} dest={{ item.dest }} mode='a+x'
 
+      - name: Copy doas.conf defaults
+        become: yes
+        ansible.builtin.copy:
+          src: './templates/opendoas.conf'
+          dest: '/etc/doas.conf'
+          force: 'no'
