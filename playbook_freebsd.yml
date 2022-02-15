@@ -146,13 +146,14 @@
         become: yes
         become_user: '{{ create_user }}'
         get_url:
-          uri: '{{ github_release_url_rclip }}'
+          url: '{{ github_release_url_rclip }}'
           dest: '{{ github_dest_archive_rclip }}'
 
       - name: Extract rclip-client
         become: yes
         become_user: '{{ create_user }}'
         shell: |
+          cd /tmp
           tar xf {{ github_dest_archive_rclip }} --strip-components=1
           rm {{ github_dest_archive_rclip }}
 
