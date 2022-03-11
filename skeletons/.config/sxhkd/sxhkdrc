@@ -2,6 +2,9 @@
 ctrl + t; r
     pkill -USR1 -x sxhkd
 
+ctrl + t; x
+    xrefresh
+
 Print
     img="$HOME/Pictures/`date +%Y_%m_%d_%H_%M_%S`.png"; \
     import $img; \
