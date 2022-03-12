@@ -60,6 +60,9 @@
           content: 'permit keepenv :wheel'
           dest: '/etc/doas.conf'
           force: 'no'
+          owner: 'root'
+          group: 'root'
+          mode: '0400'
 
       - name: "Downloading rclip-client"
         become: yes

@@ -175,3 +175,6 @@
           content: 'permit keepenv :wheel'
           dest: '/usr/local/etc/doas.conf'
           force: 'no'
+          owner: 'root'
+          group: 'root'
+          mode: '0400'
