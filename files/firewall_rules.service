@@ -1,9 +1,0 @@
-[Unit]
-Description=Allow only SSH
-
-[Service]
-Type=simple
-ExecStart=/bin/sh /usr/local/bin/firewall_rules.sh
-
-[Install]
-WantedBy=multi-user.target
