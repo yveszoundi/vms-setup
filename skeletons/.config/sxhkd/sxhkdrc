@@ -26,7 +26,7 @@ ctrl + t; c
     st
 
 ctrl + t; s
-    st -e sh -c 'doas shutdown -h now'
+    st -e sh -c "$(which doas || which sudo) shutdown -h now"
 
 ctrl + t; Return
     dmenu_run
