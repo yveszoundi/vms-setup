@@ -4,9 +4,9 @@
 
 This is a set of [[https://docs.ansible.com/ansible/latest/index.html][ansible playbooks]] for system post-installation configuration, /primarly/ for use within virtual machines ([[https://www.qemu.org/][QEMU]], [[https://www.vmware.com/products/workstation-player.html][VMWare]], [[https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/][Hyper-V]], [[https://www.virtualbox.org/][VirtualBox]], etc.).
 - The goal *IS NOT* a /newbie-friendly/ environment. The only objective is a small system that is reasonably fast with low resources usage (CPU, RAM, etc.).
-- Not every virtual machine *requires* a graphical environment (backup server, penetration testing, media server, etc.). If you use *several* *dedicated* virtual machines (i.e. "a la" [[https://www.qubes-os.org/intro/][Qubes OS]]), not installing a UI saves resources.
+- Not every virtual machine *requires* a graphical environment (backup server, penetration testing, media server, etc.). If you use *several* *dedicated* virtual machines (i.e. "a la" [[https://www.qubes-os.org/intro/][Qubes OS]]), not installing a UI saves resources. The default shell is [[https://en.wikipedia.org/wiki/KornShell][Ksh]], the [[https://man.openbsd.org/ksh.1][OpenBSD flavor]].
 
-  The default shell is [[https://en.wikipedia.org/wiki/KornShell][Ksh]], the [[https://man.openbsd.org/ksh.1][OpenBSD flavor]].
+  [[./vms-setup.png]]
 
 * What is required?
 
