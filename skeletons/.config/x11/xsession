@@ -6,7 +6,9 @@
 output_device=$(xrandr --query | grep -i connected | awk '{print $1}')
 xrandr --auto --output ${output_device} --mode 1440x900
 
-setxkbmap -option ctrl:swapcaps
+# play nice with autohotkey via xmodmap instead of setxkbmap
+# setxkbmap -option ctrl:swapcaps
+xmodmap $HOME/.config/x11/xmodmap
 
 xrdb -load $XRESOURCES
 
