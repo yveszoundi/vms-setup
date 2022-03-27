@@ -14,7 +14,7 @@
  '(linum-format " %5i ")
  '(menu-bar-mode nil)
  '(package-check-signature nil)
- '(package-selected-packages '(base16-theme xclip avy multiple-cursors))
+ '(package-selected-packages '(rimero-theme xclip avy multiple-cursors))
  '(plantuml-java-args
    '("-Djava.awt.headless=true" "-jar" "--illegal-access=deny"))
  '(recentf-mode t)
@@ -548,7 +548,7 @@ With negative N, comment out original line and use the absolute value."
 (when (fboundp 'tool-bar-mode)
    (tool-bar-mode -1))
 
-(load-theme 'base16-onedark t)
+(load-theme 'rimero t)
 
 ;;; Local Variables:
 ;;; outline-regexp: ";;;; "
