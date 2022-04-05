@@ -39,15 +39,11 @@ You can customize defaults as you please (=vars= directory), and then run one of
  - Login with the newly created user =vip= and the password =vip123= (see the =vars= directory).
  - Please update your password immediately... (=passwd= command).
  - Logout using the =exit= command.
- - Go to the [[https://en.wikipedia.org/wiki/XDM_(display_manager)][XDM]] display manager window, if it's started and enabled (i.e. =CTRL-ALT-F7=).
- - Authenticate and you'll notice that you're inside the dwm window manager.
- - Type =CTRL-t-k= to close =xconsole=.
- - You can read more about the relevant [[https://github.com/yveszoundi/dwm-customization][dwm customizations on Github]].
 
 * What's next?
 
-- Dedicated playbooks focused on the purpose instead of an OS centric view (Password manager VM, VPN VM, Firewall VM, etc.)
-- Review omnipotence and correctness/clarity for some of the configurations:
-  - User creation and initial password on NetBSD
-  - Some requirements are hidden (=pkgin= installation on NetBSD, etc.)
+- [ ] Dedicated playbooks focused on the purpose instead of an OS centric view (Password manager VM, VPN VM, Firewall VM, etc.)
+- [ ] Review omnipotence and correctness/clarity for some of the configurations:
+  - [ ] User creation and initial password on NetBSD
+  - [ ] Some requirements are hidden (=pkgin= installation on NetBSD, etc.)
   
