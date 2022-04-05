@@ -1,21 +1,63 @@
-*.foreground:   #abb2bf
-*.background:   #ff0000
-*.cursorColor:  #abb2bf
-*.opacity:      0.87 
-*.borderpx:     1
-*.color0:       #282c34
-*.color8:       #545862
-*.color1:       #e06c75
-*.color9:       #d19a66
-*.color2:       #98c379
-*.color10:      #98c379
-*.color3:       #e5c07b
-*.color11:      #d19a66
-*.color4:       #61afef
-*.color12:      #56b6c2
-*.color5:       #c678dd
-*.color13:      #c678dd
-*.color6:       #56b6c2
-*.color14:      #61afef
-*.color7:       #abb2bf
-*.color15:      #c8ccd4
+! special
+*.foreground:  #c5c8c6
+*.background:  #1d1f21
+*.cursorColor: #c5c8c6
+
+! black
+#define COLOR0  #282a2e
+#define COLOR8  #373b41
+! red
+#define COLOR1  #a54242
+#define COLOR9  #cc6666
+! green
+#define COLOR2  #8c9440
+#define COLOR10 #b5bd68
+! yellow
+#define COLOR3  #de935f
+#define COLOR11 #f0c674
+! blue
+#define COLOR4  #5f819d
+#define COLOR12 #81a2be
+! magenta
+#define COLOR5  #85678f
+#define COLOR13 #b294bb
+! cyan
+#define COLOR6  #5e8d87
+#define COLOR14 #8abeb7
+! white
+#define COLOR7  #707880
+#define COLOR15 #c5c8c6
+
+*.opacity:  0.87 
+*.borderpx: 1
+
+*.color0:  COLOR0
+*.color1:  COLOR1
+*.color2:  COLOR2
+*.color3:  COLOR3
+*.color4:  COLOR4
+*.color5:  COLOR5
+*.color6:  COLOR6
+*.color7:  COLOR7
+*.color8:  COLOR8
+*.color9:  COLOR9
+*.color10: COLOR10
+*.color11: COLOR11
+*.color12: COLOR12
+*.color13: COLOR13
+*.color14: COLOR14
+*.color15: COLOR15
+
+dwm.normbgcolor:     COLOR0
+dwm.normbordercolor: COLOR2
+dwm.normfgcolor:     COLOR15
+dwm.selbgcolor:      COLOR1
+dwm.selbordercolor:  COLOR0
+dwm.selfgcolor:      COLOR15
+
+st.termname: xterm-256color
+
+dmenu.background:    COLOR0
+dmenu.foreground:    COLOR15
+dmenu.selbackground: COLOR1
+dmenu.selforeground: COLOR15

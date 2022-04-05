@@ -29,13 +29,19 @@ ctrl + t; s
     st -e sh -c "$(which doas || which sudo) shutdown -h now"
 
 ctrl + t; Return
-    dmenu_run
+    dmenu_run -c -l 10
 
 ctrl + t; shift + c
     rclip-copy
 
 ctrl + t; shift + v
     rclip-paste
+
+ctrl + t; l
+    slock
+
+ctrl + t; z
+    boomer
 
 # dwm
 ctrl + t; space
@@ -58,12 +64,6 @@ ctrl + t; {bracketleft,bracketright}
 
 ctrl + t; b
     dwmc togglebar
-
-ctrl + t; l
-    slock
-
-ctrl + t; z
-    boomer
 
 ctrl + t; shift + space
     dwmc togglefloating
