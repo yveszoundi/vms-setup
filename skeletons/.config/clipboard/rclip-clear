@@ -1,0 +1,2 @@
+#!/bin/sh
+rclip-client-cli --host 10.0.2.2 --command CLEAR --der-cert-pub /usr/local/etc/rclip-der-cert-pub.der

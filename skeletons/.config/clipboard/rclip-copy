@@ -1,2 +1,2 @@
 #!/bin/sh
-rclip-client-cli --server-host 10.0.2.2 --command WRITE --clipboard-program /usr/local/bin/rclip-xclip-copy
+rclip-client-cli --host 10.0.2.2 --command WRITE --der-cert-pub /usr/local/etc/rclip-der-cert-pub.der

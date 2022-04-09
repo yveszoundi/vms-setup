@@ -10,6 +10,8 @@ xrandr --auto --output ${output_device} --mode 1440x900
 # setxkbmap -option ctrl:swapcaps
 xmodmap $HOME/.config/x11/xmodmap
 
+xsetroot -solid black
+
 xrdb -load $XRESOURCES
 
 sxhkd&
