@@ -44,6 +44,9 @@ ctrl + t; z
     boomer
 
 # dwm
+ctrl + t; grave
+    dwmc zoom
+    
 ctrl + t; space
     dwmc setlayoutex 0
 
