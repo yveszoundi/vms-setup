@@ -1,0 +1,7 @@
+#!/sbin/openrc
+
+description="Rclip server"
+command="sh -c rclip-server"
+command_user="{{ create_user }}"
+command_background="yes"
+pidfile="/var/run/$RC_SVCNAME.pid"

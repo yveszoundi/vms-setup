@@ -1,0 +1,49 @@
+---
+- name: Create tempdir for dangerzone files
+  become_user: "{{ create_user }}"
+  tempfile: state=directory suffix="dangerzone"
+  register: dangerzone_temp_dir  
+
+- name: Download dangerzone archive
+  become_user: "{{ create_user }}"
+  get_url:
+    url: "{{ github_release_url_dangerzone }}"
+    dest: "{{ dangerzone_temp_dir.path}}/dangerzone.tar"
+
+- name: Extract dangerzone archive
+  become_user: "{{ create_user }}"
+  unarchive:
+    src: "{{ dangerzone_temp_dir.path }}/dangerzone.tar"
+    dest: "{{ dangerzone_temp_dir.path }}"
+  
+- name: "Copy dangerzone binaries to {{ custom_binaries_folder }}"
+  become: yes
+  copy:
+    src: "{{ dangerzone_temp_dir.path }}/{{ root_archive_bin_path_dangerzone }}/{{ item }}"
+    dest: "{{ custom_binaries_folder }}"
+    mode: "a+x"
+  with_items:
+    - "dangerzone-cli"
+    - "dangerzone-httpserver"
+    
+- name: Create iptables file
+  become_user: "{{ create_user }}"
+  template:
+    src: "{{ role_path }}/templates/dangerzone-httpserver.iptables.sh.j2"
+    dest: "{{ dangerzone_temp_dir.path}}/dangerzone-httpserver.iptables"
+    mode: "a+x"  
+
+- name: Restrict network connectivity via iptables
+  become: yes
+  shell: "sh {{ dangerzone_httpserver_iptables_file | quote }}/dangerzone-httpserver.iptables"
+
+- name: Install dangerzone-httpserver service files
+  become: yes
+  template: src="{{ role_path }}/templates/dangerzone-httpserver.service.j2" dest="/etc/systemd/system/dangerzone-httpserver.service"
+
+- name: Enable dangerzone-httpserver service
+  become: yes
+  service:
+    name: dangerzone-httpserver
+    enabled: yes
+    

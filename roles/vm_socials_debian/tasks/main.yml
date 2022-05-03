@@ -1,0 +1,5 @@
+---
+
+- name: OSSDEV default task
+  debug:
+    msg: "This is an OSSDEV task"

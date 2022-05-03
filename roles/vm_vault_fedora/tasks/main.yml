@@ -1,0 +1,5 @@
+---
+
+- name: Vault default task
+  debug:
+    msg: "This is a vault task"

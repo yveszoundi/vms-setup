@@ -1,5 +1,9 @@
 #+TITLE: Virtual Machines Configuration
 
+PLEASE DO NOT USE, THIS IS BROKEN AND UNDER REWRITE...
+
+Things will be broken here and there for a while until I get time.
+
 * What is this?
 
 This is a set of [[https://docs.ansible.com/ansible/latest/index.html][ansible playbooks]] for system post-installation configuration, /primarly/ for use within virtual machines ([[https://www.qemu.org/][QEMU]], [[https://www.vmware.com/products/workstation-player.html][VMWare]], [[https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/][Hyper-V]], [[https://www.virtualbox.org/][VirtualBox]], etc.).
@@ -7,11 +11,11 @@ This is a set of [[https://docs.ansible.com/ansible/latest/index.html][ansible p
 - Not every virtual machine *requires* a graphical environment (backup server, penetration testing, media server, etc.). If you use *several* *dedicated* virtual machines (i.e. "a la" [[https://www.qubes-os.org/intro/][Qubes OS]]), not installing a UI saves resources. The default shell is [[https://en.wikipedia.org/wiki/KornShell][Ksh]], the [[https://man.openbsd.org/ksh.1][OpenBSD flavor]].
 
   The screenshot below shows 5 Linux virtual machines (QEMU), running on a MacOS host (iMac Pro).
-  [[./vms-setup.png]]
+  [[./images/vms-setup.png]]
 
 * What is required?
 
-- Supported operating systems: Linux ([[https://voidlinux.org/][Void Linux]]) and BSD ([[https://www.openbsd.org/][OpenBSD]], [[https://netbsd.org/][NetBSD]], [[https://www.freebsd.org/][FreeBSD]])
+- Several Linux distributions are used. BSD systems serve mostly as build machines at this time ([[https://www.openbsd.org/][OpenBSD]], [[https://netbsd.org/][NetBSD]], [[https://www.freebsd.org/][FreeBSD]]).
 - Package dependencies (the package names might vary from any any BSD or Linux variant to another):
   - [[https://en.wikipedia.org/wiki/Ansible_(software)][ansible]]: In order to run the provided ansible playbooks.
   - [[https://en.wikipedia.org/wiki/Git][git]]: To pull additional repositories (/including this one/) from revision control.
@@ -29,22 +33,6 @@ Please run the following commands in a terminal.
 
 ** Apply configurations
 
-You can customize defaults as you please (=vars= directory), and then run one of the following commands as =root=:
-- For Linux, run =ansible-playbook -v playbook_voidlinux.yml -K=.
-- For OpenBSD, run =ansible-playbook -v playbook_openbsd.yml -K=.
+There are multiple "formulas" (i.e. YAML files at the root of this project)
+Run =ansible-playbook -K -v --become-method=su ossdevservers.yml=.
 
-** Finish the setup
-
- Once you're done with the above, wrap-up the configuration:
- - Open a terminal from the console (i.e. =CTRL-ALT-F2=).
- - Login with the newly created user =vip= and the password =vip123= (see the =vars= directory).
- - Please update your password immediately... (=passwd= command).
- - Logout using the =exit= command.
-
-* What's next?
-
-- [ ] Dedicated playbooks focused on the purpose instead of an OS centric view (Password manager VM, VPN VM, Firewall VM, etc.)
-- [ ] Review omnipotence and correctness/clarity for some of the configurations:
-  - [ ] User creation and initial password on NetBSD
-  - [ ] Some requirements are hidden (=pkgin= installation on NetBSD, etc.)
-  

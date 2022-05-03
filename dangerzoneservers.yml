@@ -1,0 +1,5 @@
+---
+- hosts: dangerzoneservers
+  roles:
+    - shared_default_packages
+    - vm_dangerzone

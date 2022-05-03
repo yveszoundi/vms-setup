@@ -1,0 +1,47 @@
+---
+# Customize user
+- name: Creating kshrc symlink for user "{{ create_user }}"
+  become: yes
+  become_user: "{{ create_user }}"
+  ansible.builtin.file:
+    src: "/home/{{ create_user }}/.config/shell/kshrc"
+    dest: "/home/{{ create_user }}/.kshrc"
+    owner: "{{ create_user }}"
+    state: link
+- name: Creating dot profile symlink for user "{{ create_user }}"
+  become: yes
+  become_user: "{{ create_user }}"
+  ansible.builtin.file:
+    src: "/home/{{ create_user }}/.config/shell/profile"
+    dest: "/home/{{ create_user }}/.profile"
+    owner: "{{ create_user }}"
+    state: link
+- name: Creating inputrc symlink for user "{{ create_user }}"
+  become: yes
+  become_user: "{{ create_user }}"
+  ansible.builtin.file:
+    src: "/home/{{ create_user }}/.config/readline/inputrc"
+    dest: "/home/{{ create_user }}/.inputrc"
+    owner: "{{ create_user }}"
+    state: link
+- name: Creating Xresources symlink for user "{{ create_user }}"
+  become: yes
+  become_user: "{{ create_user }}"
+  ansible.builtin.file:
+    src: "/home/{{ create_user }}/.config/x11/Xresources"
+    dest: "/home/{{ create_user }}/.Xresources"
+    owner: "{{ create_user }}"
+    state: link    
+- name: Creating xsession symlink for user "{{ create_user }}"
+  become: yes
+  become_user: "{{ create_user }}"
+  ansible.builtin.file:
+    src: "/home/{{ create_user }}/.config/x11/xsession"
+    dest: "/home/{{ create_user }}/.xsession"
+    owner: "{{ create_user }}"
+    mode: "700"
+    state: link
+- name: Generate borgmatic configuration for user "{{ create_user }}"
+  become: yes
+  become_user: "{{ create_user }}"
+  template: src="{{ inventory_dir }}/templates/borgmatic_config.yaml.j2" dest="/home/{{ create_user }}/.config/borgmatic/config.yaml"

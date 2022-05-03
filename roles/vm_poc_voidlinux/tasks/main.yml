@@ -1,0 +1,5 @@
+---
+
+- name: Banking default task
+  debug:
+    msg: "This is a banking task"

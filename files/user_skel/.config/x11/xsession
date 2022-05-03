@@ -1,0 +1,24 @@
+#!/usr/bin/env ksh
+
+# Source default variables
+. $HOME/.profile
+. $HOME/.kshrc
+
+# Set the display resolution
+output_device=$(xrandr --query | grep -i connected | awk '{print $1}')
+xrandr --auto --output ${output_device} --mode 1440x900
+
+# Can also use setxkbmap -option ctrl:swapcaps
+xmodmap $HOME/.config/x11/xmodmap
+
+# Default back solid background
+xsetroot -solid black
+
+# Load default colors
+xrdb -load $XRESOURCES
+
+# Load keyboard daemon
+sxhkd&
+
+# Start the window manager
+exec /usr/local/bin/dwm

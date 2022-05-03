@@ -1,0 +1,13 @@
+---
+# New user creation for FreeBSD and OpenBSD
+- name: Creating user "{{ create_user }}"
+  become: yes
+  ansible.builtin.user:
+    name: "{{ create_user }}"
+    password: "{{ create_user_password | password_hash('blowfish') }}"
+    state: present
+    groups: {{ create_user_groups }}
+    append: true
+    create_home: true
+    skeleton: "{{ inventory_dir }}/files/user_skel"
+    shell: "{{ create_user_shell }}"

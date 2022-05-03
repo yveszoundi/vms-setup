@@ -1,0 +1,5 @@
+---
+- hosts: rclipservers
+  roles:
+    - shared_default_packages
+    - vm_rclip

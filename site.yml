@@ -1,0 +1,9 @@
+---
+
+- import_playbook: dangerzoneservers.yml
+- import_playbook: rclipservers.yml
+- import_playbook: pocservers.yml
+- import_playbook: bankingservers.yml
+- import_playbook: ossdevservers.yml
+- import_playbook: vaultservers.yml
+

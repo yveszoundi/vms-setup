@@ -1,0 +1,63 @@
+---
+
+- name: Install default packages
+  debug:
+    msg: "Installing default packages"
+
+- name: Installing base system tools
+  become: yes
+  package: name={{ packages_base }} state=present
+
+- name: Installing editors
+  become: yes
+  package: name={{ packages_editor }} state=present
+
+- name: Installing devel tools
+  become: yes
+  package: name={{ packages_devel }} state=present
+
+- name: Installing utilities
+  become: yes
+  package: name={{ packages_utilities }} state=present
+
+- name: Installing productivity packages
+  become: yes
+  package: name={{ packages_productivity }} state=present
+
+- name: Installing sound packages
+  become: yes
+  package: name={{ packages_sound }} state=present
+
+- name: Installing additional programming tools
+  become: yes
+  package: name={{ packages_programming }}  state=present
+
+- name: Installing x11 tools
+  become: yes
+  package: name={{ packages_x11 }}  state=present
+
+- name: Installing desktop tools
+  become: yes
+  package: name={{ packages_desktop }} state=present
+
+- name: Installing fonts
+  become: yes
+  package: name={{ packages_fonts}} state=present
+
+- name: Installing backup tools
+  become: yes
+  package: name={{ packages_backup }} state=present
+
+- name: Installing security tools
+  become: yes
+  package: name={{ packages_sec }} state=present
+
+# - name: Copy doas.conf defaults
+#   become: yes
+#   ansible.builtin.copy:
+#     content: 'permit keepenv :wheel'
+#     dest: '/usr/pkg/etc/doas.conf'
+#     force: 'no'
+#     owner: 'root'
+#     group: 'root'
+#     mode: '0400'

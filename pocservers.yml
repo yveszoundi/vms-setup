@@ -1,0 +1,5 @@
+---
+- hosts: pocservers
+  roles:
+    - shared_default_packages
+    - vm_poc

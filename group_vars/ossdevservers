@@ -1,0 +1,11 @@
+---
+# Variable for ossdevservers host groups
+
+rclip_bind_ip: 10.0.2.2
+rclip_bind_port: 11000
+
+
+
+
+
+

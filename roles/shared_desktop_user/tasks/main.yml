@@ -1,0 +1,53 @@
+---
+# Desktop user window manager setup
+- name: Create suckless tools github temporary folders
+  become_user: "{{ create_user }}"
+  tempfile: state=directory suffix="{{ item }}"
+  register: github_temp_folders
+  with_items:
+    - dwm
+    - dmenu
+    - st
+
+- name: Checkout suckless tools customization repositories
+  become_user: "{{ create_user }}"
+  git: repo="{{ item.src }}" dest="{{ item.dest }}"
+  with_items:
+    - { src: "{{ github_repo_url_dwm }}", dest: "{{ github_temp_folders.results | selectattr('item', '==', 'dwm') | map(attribute='path') | first }}" }
+    - { src: "{{ github_repo_url_dmenu }}", dest: "{{ github_temp_folders.results | selectattr('item', '==', 'dmenu') | map(attribute='path') | first }}" }
+    - { src: "{{ github_repo_url_st }}", dest: "{{ github_temp_folders.results | selectattr('item', '==', 'st') | map(attribute='path') | first }}" }
+
+- name: Compile and install suckless tools customization
+  become: yes
+  make: chdir="{{ item }}" target="install" 
+  with_items:
+    - "{{ github_temp_folders.results | selectattr('item', '==', 'dwm') | map(attribute='path') | first }}"
+    - "{{ github_temp_folders.results | selectattr('item', '==', 'dmenu') | map(attribute='path') | first }}"
+    - "{{ github_temp_folders.results | selectattr('item', '==', 'st') | map(attribute='path') | first }}"
+
+- name: Create personal tools github temporary folders
+  become_user: "{{ create_user }}"
+  tempfile: state=directory suffix="{{ item }}"
+  register: github_perso_temp_folders
+  with_items:
+    - rclip
+
+- name: Download rclip archive
+  become_user: "{{ create_user }}"
+  get_url:
+    url: "{{ github_release_url_rclip }}"
+    dest: "{{ github_perso_temp_folders.results | selectattr('item', '==', 'rclip') | map(attribute='path') | first }}/rclip.tar"
+
+- name: Extract rclip archive
+  become_user: "{{ create_user }}"
+  unarchive:
+    src: "{{ github_perso_temp_folders.results | selectattr('item', '==', 'rclip') | map(attribute='path') | first }}/rclip.tar"
+    dest: "{{ github_perso_temp_folders.results | selectattr('item', '==', 'rclip') | map(attribute='path') | first }}"
+  
+- name: "Copy rclip binary to {{ custom_binaries_folder }}"
+  become_user: "{{ create_user }}"
+  copy:
+    src: "{{ github_perso_temp_folders.results | selectattr('item', '==', 'rclip') | map(attribute='path') | first }}/{{ root_archive_bin_path_rclip }}/rclip-client-cli"
+    dest: "{{ custom_binaries_folder }}"
+    mode: "a+x"
+    

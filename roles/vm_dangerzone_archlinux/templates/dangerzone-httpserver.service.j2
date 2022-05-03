@@ -1,0 +1,12 @@
+[Unit]
+Description=Dangerzone HTTP server
+After=network.target
+
+[Service]
+Type=simple
+User={{ dangerzone_user }}
+ExecStart=/usr/local/bin/dangerzone-http-server --host {{ dangerzone_bind_ip }} --port {{ dangerzone_bind_port }}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

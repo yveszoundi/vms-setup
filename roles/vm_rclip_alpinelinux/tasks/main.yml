@@ -1,0 +1,12 @@
+---
+
+- name: rclip default task
+  debug:
+    msg: "rclip will be configured with the address {{ rclip_bind_ip }}:{{ rclip_bind_port }}"
+
+- name: Install rclip-server service
+  become_user: "{{ create_user }}"
+  template: src="{{ role_path }}/templates/rclip-server.j2" dest="/home/{{ create_user }}/rclip-server"
+
+
+

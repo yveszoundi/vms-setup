@@ -1,0 +1,21 @@
+Example for a restricted environment
+
+#!/bin/sh
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+iptables -A INPUT -i lo -j ACCEPT
+
+# Accept SSH connections
+iptables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+
+# Acept connections to custom port 11000
+iptables -A INPUT -p tcp -m tcp --dport 11000 -j ACCEPT
+
+iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+
+# Accept connections to rclip server
+iptables -A OUTPUT -p tcp -m tcp --dport 10080 -j ACCEPT 
+iptables -A OUTPUT -p tcp --sport 10080 -m state --state ESTABLISHED -j ACCEPT
+
+iptables -A INPUT -m state  --state ESTABLISHED,RELATED -j ACCEPT
