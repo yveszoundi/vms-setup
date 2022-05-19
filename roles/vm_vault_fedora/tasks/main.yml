@@ -1,5 +1,36 @@
 ---
 
-- name: Vault default task
-  debug:
-    msg: "This is a vault task"
+- name: Remove firewalld
+  package:
+    name: firewalld
+    state: absent
+
+- name: Install veracrypt
+  become: yes
+  shell: 'dnf install https://launchpad.net/veracrypt/trunk/1.25.9/+download/veracrypt-1.25.9-CentOS-8-x86_64.rpm'
+
+- name: Binary for enabling firewall rules
+  become: yes
+  template: src="{{ role_path }}/templates/fw-enable.j2" dest="/usr/bin/fw-enable"
+  mode: "a+x"
+
+- name: Binary for disabling firewall rules
+  become: yes
+  template: src="{{ role_path }}/templates/fw-disable.j2" dest="/usr/bin/fw-disable"
+  mode: "a+x"
+  
+- name: Restrict network connectivity via iptables
+  become: yes
+  shell: "/usr/bin/fw-enable"
+  
+- name: Save iptables rules
+  become: yes
+  shell: "/etc/init.d/iptables-save"  
+
+- name: Copy dwm autostart file
+  become: yes
+  become_user: {{ create_user }}
+  copy:
+    src: "{{ role_path }}/files/autostart.sh"
+    dest: "/home/{{ create_user }}/.local/share/dwm/autostart.sh"
+    mode: "a+x"

@@ -1,3 +1,37 @@
 ---
-# vaultservers variables
+# Variables for all host groups
+
+create_user_shell: "/bin/mksh"
+create_user_groups: "wheel,audio,cdrom,floppy,input,lp,scanner,video"
+
+packages_base: []
+packages_sec: ['keepassxc']
+packages_editor: []
+packages_devel: []
+packages_utilities: []
+packages_programming: []
+packages_productivity: []
+packages_sound: []
+packages_x11: []
+packages_desktop: []
+packages_fonts: []
+packages_backup: []
+
+github_repo_url_dwm: "https://github.com/yveszoundi/dwm-customization.git"
+github_repo_url_dmenu: "https://github.com/yveszoundi/dmenu-customization.git"
+github_repo_url_st: "https://github.com/yveszoundi/st-customization.git"
+github_repo_url_boomer: "https://github.com/yveszoundi/boomer.git"
+
+github_release_url_rclip: "https://github.com/yveszoundi/rclip/releases/download/1.0.1/rclip-linux-amd64-1.0.1.tar"
+github_release_url_dangerzone: "https://github.com/rimerosolutions/dangerzone-rust/releases/download/0.0.1/dangerzone-linux-amd64-0.0.1.tar"
+
+root_archive_bin_path_rclip: "rclip-linux-amd64-1.0.1/binaries"
+root_archive_bin_path_dangerzone: "dangerzone-linux-amd64-0.0.1"
+
+custom_binaries_folder: "/usr/local/bin"
+
+rclip_bind_ip: 10.0.2.2
+rclip_bind_port: 10800
+dangerzone_bind_ip: 10.0.2.2
+dangerzone_bind_port: 11000
 

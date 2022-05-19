@@ -2,4 +2,6 @@
 - hosts: vaultservers
   roles:
     - shared_default_packages
-    - vm_rclip
+    - shared_newuser_linux
+    - shared_desktop_user    
+    - vm_vault_fedora

@@ -4,4 +4,4 @@
     - shared_default_packages
     - shared_newuser_linux
     - shared_desktop_user
-    - vm_ossdev
+    - vm_ossdev_ubuntu

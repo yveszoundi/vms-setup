@@ -1,5 +1,0 @@
----
-- hosts: bankingservers
-  roles:
-    - shared_default_packages
-    - vm_banking

@@ -4,7 +4,18 @@
 rclip_bind_ip: 10.0.2.2
 rclip_bind_port: 11000
 
-
+packages_base: []
+packages_sec: ['doas', 'podman', 'gnupg', 'openssh-server', 'openssh-sftp-server']
+packages_editor: []
+packages_devel: [ 'cmake', 'clang', 'musl-tools', 'musl-dev', 'musl', 'debootstrap', 'gcc', 'g++', 'fuse', 'libx11-dev', 'libxft-dev', 'libxinerama-dev', 'libfreetype6-dev', 'libfontconfig1-dev']
+packages_utilities: ['bc', '']
+packages_programming: ['emacs-gtk', 'mg']
+packages_productivity: ['mupdf', 'krita', 'graphviz', 'mypaint']
+packages_sound: []
+packages_x11: ['xserver-org', 'xserver-xorg-input-all', 'xserver-xorg-video-all', 'xorg', 'sxhkd', 'xclip', 'xdg-utils', 'x11-apps', 'xdm']
+packages_desktop: ['firefox', 'pcmanfm']
+packages_fonts: ['fonts-dejavu-core', 'fonts-liberation', 'fonts-liberation2']
+packages_backup: []
 
 
 

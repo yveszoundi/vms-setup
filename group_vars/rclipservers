@@ -3,3 +3,4 @@
 rclip_bind_ip: 0.0.0.0
 rclip_bind_port: 11000
 
+packages_sec: ['iptables', 'dropbear']

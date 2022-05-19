@@ -1,5 +1,0 @@
----
-
-- name: POC default task
-  debug:
-    msg: "This is a POC task"

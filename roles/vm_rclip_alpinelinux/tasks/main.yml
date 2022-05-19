@@ -1,12 +1,58 @@
 ---
+- name: Create tempdir for rclip files
+  become_user: "{{ create_user }}"
+  tempfile: state=directory suffix="rclip"
+  register: rclip_temp_dir  
 
-- name: rclip default task
-  debug:
-    msg: "rclip will be configured with the address {{ rclip_bind_ip }}:{{ rclip_bind_port }}"
+- name: Download rclip archive
+  become_user: "{{ create_user }}"
+  get_url:
+    url: "{{ github_release_url_rclip }}"
+    dest: "{{ rclip_temp_dir.path}}/rclip.tar"
+
+- name: Extract rclip archive
+  become_user: "{{ create_user }}"
+  unarchive:
+    src: "{{ rclip_temp_dir.path }}/rclip.tar"
+    dest: "{{ rclip_temp_dir.path }}"
+  
+- name: "Copy rclip binaries to {{ custom_binaries_folder }}"
+  become: yes
+  copy:
+    src: "{{ rclip_temp_dir.path }}/{{ root_archive_bin_path_rclip }}/{{ item }}"
+    dest: "{{ custom_binaries_folder }}"
+    mode: "a+x"
+  with_items:
+    - "rclip-server"
 
 - name: Install rclip-server service
-  become_user: "{{ create_user }}"
-  template: src="{{ role_path }}/templates/rclip-server.j2" dest="/home/{{ create_user }}/rclip-server"
+  become: yes
+  template: src="{{ role_path }}/templates/rclip-server.j2" dest="/etc/init.d/{{ create_user }}/rclip-server"
 
+- name: Binary for enabling firewall rules
+  become: yes
+  template: src="{{ role_path }}/templates/fw-enable.j2" dest="/usr/bin/fw-enable"
+  mode: "a+x"
 
+- name: Binary for disabling firewall rules
+  become: yes
+  template: src="{{ role_path }}/templates/fw-disable.j2" dest="/usr/bin/fw-disable"
+  mode: "a+x"
 
+- name: Enable services
+  become: yes
+  service:
+    name: {{ item }}
+    enabled: yes
+  with_items:
+    - dropbear
+    - iptables
+    - rclip
+    
+- name: Restrict network connectivity via iptables
+  become: yes
+  shell: "/usr/bin/fw-enable"
+  
+- name: Save iptables rules
+  become: yes
+  shell: "/etc/init.d/iptables-save"  

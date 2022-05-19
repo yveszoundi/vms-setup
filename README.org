@@ -34,5 +34,8 @@ Please run the following commands in a terminal.
 ** Apply configurations
 
 There are multiple "formulas" (i.e. YAML files at the root of this project)
-Run =ansible-playbook -K -v --become-method=su ossdevservers.yml=.
+
+#+begin_src sh
+ ansible-playbook -K -v -i inventory.ini --become-method=su ossdevservers.yml
+#+end_src
 
