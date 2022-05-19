@@ -35,6 +35,11 @@ Please run the following commands in a terminal.
 
 There are multiple "formulas" (i.e. YAML files at the root of this project)
 
+The "master" playbook is =site.yml=, 
+- The master playbook includes individual playbooks
+-That file will probably disappear as most of the machines are not provisioned via SSH.
+
+
 #+begin_src sh
  ansible-playbook -K -v -i inventory.ini --become-method=su ossdevservers.yml
 #+end_src
