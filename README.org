@@ -33,9 +33,7 @@ Please run the following commands in a terminal.
 
 ** Apply configurations
 
-There are multiple "formulas" (i.e. YAML files at the root of this project)
-
-The "master" playbook is =site.yml=:
+There are multiple "formulas" (i.e. YAML files at the root of this project). The "master" playbook is =site.yml=:
 - The master playbook includes individual playbooks
 - That file will probably disappear as most of the machines are not provisioned via SSH.
 
